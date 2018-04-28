@@ -17,11 +17,17 @@
 package me.zbl.controller;
 
 import me.zbl.conf.WXProperties;
+import me.zbl.entity.response.ApiLoginResponse;
 import me.zbl.entity.response.LoginResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 小程序登录
@@ -40,6 +46,17 @@ public class LoginController {
 
   @GetMapping("/w_login")
   public LoginResponse login(String code) {
-    return new LoginResponse("11111111111");
+    Map<String, String> params = new HashMap<>();
+    params.put("appid", wxProperties.getAppId());
+    params.put("secret", wxProperties.getAppSecret());
+    params.put("js_code", code);
+    params.put("grant_type", "authorization_code");
+    ResponseEntity<ApiLoginResponse> response = null;
+    try {
+      restTemplate.getForObject(wxProperties.getUrlCode2Session(), ApiLoginResponse.class, params);
+    } catch (RestClientException e) {
+      e.printStackTrace();
+    }
+    return new LoginResponse(response.getBody().getErrcode());
   }
 }

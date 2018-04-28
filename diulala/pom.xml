@@ -26,4 +26,12 @@ limitations under the License.
 
     <artifactId>diulala</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>me.zbl</groupId>
+            <artifactId>core</artifactId>
+            <version>0.1-snapshot</version>
+        </dependency>
+    </dependencies>
+
 </project>

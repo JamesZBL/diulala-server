@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package me.zbl.entity.response;
+package me.zbl.diulala.entity.response;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -27,6 +27,6 @@ import lombok.Setter;
 @Setter
 public class ApiLoginResponse {
 
-  private String errcode;
-  private String errmsg;
+  private String openid;
+  private String sessionKey;
 }

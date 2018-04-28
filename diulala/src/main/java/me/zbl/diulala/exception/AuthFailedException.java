@@ -14,32 +14,14 @@
  * limitations under the License.
  *
  */
-package me.zbl.conf;
-
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.lang.NonNull;
+package me.zbl.diulala.exception;
 
 /**
- * 小程序配置
+ * 登录失败异常
  *
  * @author JamesZBL
  * @date 2018-04-28
  */
-@Getter
-@Setter
-@Configuration
-@ConfigurationProperties(prefix = "wx")
-public class WXProperties {
+public class AuthFailedException extends Exception {
 
-  @NonNull
-  private String appId;
-  @NonNull
-  private String appSecret;
-  @NonNull
-  private String urlBase;
-  @NonNull
-  private String urlCode2Session;
 }

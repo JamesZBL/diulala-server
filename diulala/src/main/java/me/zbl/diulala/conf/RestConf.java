@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package me.zbl.conf;
+package me.zbl.diulala.conf;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

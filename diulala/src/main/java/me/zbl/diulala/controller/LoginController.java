@@ -14,11 +14,12 @@
  * limitations under the License.
  *
  */
-package me.zbl.controller;
+package me.zbl.diulala.controller;
 
-import me.zbl.conf.WXProperties;
-import me.zbl.entity.response.ApiLoginResponse;
-import me.zbl.entity.response.LoginResponse;
+import me.zbl.diulala.conf.WXProperties;
+import me.zbl.diulala.entity.response.ApiLoginResponse;
+import me.zbl.diulala.entity.response.LoginResponse;
+import me.zbl.diulala.exception.AuthFailedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,7 +46,7 @@ public class LoginController {
   private RestTemplate restTemplate;
 
   @GetMapping("/w_login")
-  public LoginResponse login(String code) {
+  public LoginResponse login(String code) throws AuthFailedException {
     Map<String, String> params = new HashMap<>();
     params.put("appid", wxProperties.getAppId());
     params.put("secret", wxProperties.getAppSecret());
@@ -56,7 +57,8 @@ public class LoginController {
       restTemplate.getForObject(wxProperties.getUrlCode2Session(), ApiLoginResponse.class, params);
     } catch (RestClientException e) {
       e.printStackTrace();
+      throw new AuthFailedException();
     }
-    return new LoginResponse(response.getBody().getErrcode());
+    return new LoginResponse(response.getBody().getOpenid());
   }
 }

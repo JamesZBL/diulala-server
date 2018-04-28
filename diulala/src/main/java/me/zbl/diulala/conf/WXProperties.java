@@ -14,20 +14,32 @@
  * limitations under the License.
  *
  */
-package me.zbl.entity.response;
+package me.zbl.diulala.conf;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.lang.NonNull;
 
 /**
+ * 小程序配置
+ *
  * @author JamesZBL
  * @date 2018-04-28
  */
 @Getter
 @Setter
-@AllArgsConstructor
-public class LoginResponse {
+@Configuration
+@ConfigurationProperties(prefix = "wx")
+public class WXProperties {
 
-  private String userId;
+  @NonNull
+  private String appId;
+  @NonNull
+  private String appSecret;
+  @NonNull
+  private String urlBase;
+  @NonNull
+  private String urlCode2Session;
 }

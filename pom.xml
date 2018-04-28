@@ -9,6 +9,7 @@
     <modules>
         <module>diulala</module>
         <module>web</module>
+        <module>core</module>
     </modules>
     <packaging>pom</packaging>
 

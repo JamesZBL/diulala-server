@@ -14,9 +14,9 @@
  * limitations under the License.
  *
  */
-package me.zbl.diulala.auth;
+package me.zbl.auth;
 
-import me.zbl.diulala.auth.entity.TokenEntity;
+import me.zbl.auth.entity.TokenEntity;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 

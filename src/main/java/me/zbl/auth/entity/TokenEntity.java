@@ -14,25 +14,34 @@
  * limitations under the License.
  *
  */
-package me.zbl.diulala.controller.base;
+package me.zbl.auth.entity;
 
-import me.zbl.diulala.entity.response.MessageEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.io.Serializable;
 
 /**
- * 错误消息返回
+ * 用于用户认证的 Token 实体
  *
  * @author JamesZBL
- * @date 2018-04-19
+ * @date 2018-04-18
  */
-@RestController
-public class ErrorMsgController {
+@Data
+@Getter
+@Setter
+@AllArgsConstructor
+public class TokenEntity implements Serializable {
 
-  private static final String MSG_INTERNAL_ERROR = "服务器错误";
+  //  用户 ID
+  private Integer userId;
+  //  UUID 字符串
+  private String token;
 
-  @GetMapping("/error")
-  public MessageEntity error() {
-    return new MessageEntity(MSG_INTERNAL_ERROR);
+  @Override
+  public String toString() {
+    return userId + "-" + token;
   }
 }

@@ -14,9 +14,9 @@
  * limitations under the License.
  *
  */
-package me.zbl.diulala.controller.base;
+package me.zbl.controller.base;
 
-import me.zbl.diulala.entity.response.MessageEntity;
+import me.zbl.entity.response.MessageEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

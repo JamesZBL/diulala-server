@@ -14,9 +14,9 @@
  * limitations under the License.
  *
  */
-package me.zbl.diulala.auth;
+package me.zbl.auth;
 
-import me.zbl.diulala.auth.entity.TokenEntity;
+import me.zbl.auth.entity.TokenEntity;
 
 /**
  * 用于 Token 维护操作的接口

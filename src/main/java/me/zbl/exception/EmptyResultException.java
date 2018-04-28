@@ -14,30 +14,14 @@
  * limitations under the License.
  *
  */
-package me.zbl.diulala.auth;
-
-import me.zbl.diulala.auth.entity.TokenEntity;
+package me.zbl.exception;
 
 /**
- * token 管理抽象类
- * <p>
- * 实现对 token 的公共操作
+ * 查询结果空异常
  *
  * @author JamesZBL
  * @date 2018-04-19
  */
-public abstract class AbstractTokenManager implements TokenManager {
+public class EmptyResultException extends IllegalStateException {
 
-  /**
-   * 将 token 反序列化为 token 对象
-   *
-   * @param token token 字符串
-   *
-   * @return token 对象
-   */
-  @Override
-  public TokenEntity deserialize(String token) {
-    String[] arr = token.split("-");
-    return new TokenEntity(Integer.valueOf(arr[0]), arr[1]);
-  }
 }

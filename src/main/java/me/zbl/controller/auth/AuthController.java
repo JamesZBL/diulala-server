@@ -14,13 +14,13 @@
  * limitations under the License.
  *
  */
-package me.zbl.diulala.controller.auth;
+package me.zbl.controller.auth;
 
-import me.zbl.diulala.auth.TokenManager;
-import me.zbl.diulala.auth.entity.TokenEntity;
-import me.zbl.diulala.controller.base.BaseController;
-import me.zbl.diulala.entity.response.MessageEntity;
-import me.zbl.diulala.service.SysAdminUserService;
+import me.zbl.auth.TokenManager;
+import me.zbl.auth.entity.TokenEntity;
+import me.zbl.controller.base.BaseController;
+import me.zbl.entity.response.MessageEntity;
+import me.zbl.service.SysAdminUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

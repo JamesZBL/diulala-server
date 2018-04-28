@@ -14,34 +14,20 @@
  * limitations under the License.
  *
  */
-package me.zbl.diulala.auth.entity;
+package me.zbl.entity.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.io.Serializable;
+import me.zbl.entity.persistence.UrpInfoHebust;
 
 /**
- * 用于用户认证的 Token 实体
- *
  * @author JamesZBL
- * @date 2018-04-18
+ * @date 2018-04-08
  */
-@Data
 @Getter
 @Setter
-@AllArgsConstructor
-public class TokenEntity implements Serializable {
+public class URPInfo {
 
-  //  用户 ID
-  private Integer userId;
-  //  UUID 字符串
-  private String token;
-
-  @Override
-  public String toString() {
-    return userId + "-" + token;
-  }
+  private String imgurl;
+  private UrpInfoHebust urpinfo;
 }

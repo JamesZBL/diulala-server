@@ -14,32 +14,25 @@
  * limitations under the License.
  *
  */
-package me.zbl.diulala.conf;
+package me.zbl.controller.base;
 
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.lang.NonNull;
+import me.zbl.entity.response.MessageEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
- * 七牛云配置
+ * 错误消息返回
  *
  * @author JamesZBL
- * @date 2018-04-08
+ * @date 2018-04-19
  */
-@Getter
-@Setter
-@Configuration
-@ConfigurationProperties(prefix = "qiniu")
-public class QiNiuProperties {
+@RestController
+public class ErrorMsgController {
 
-  @NonNull
-  private String accessKey;
-  @NonNull
-  private String secretKey;
-  @NonNull
-  private String domain;
-  @NonNull
-  private Integer timeout;
+  private static final String MSG_INTERNAL_ERROR = "服务器错误";
+
+  @GetMapping("/error")
+  public MessageEntity error() {
+    return new MessageEntity(MSG_INTERNAL_ERROR);
+  }
 }

@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package me.zbl.diulala.entity.response.argument;
+package me.zbl.entity.response.argument;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

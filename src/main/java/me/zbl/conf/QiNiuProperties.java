@@ -14,14 +14,32 @@
  * limitations under the License.
  *
  */
-package me.zbl.diulala.exception;
+package me.zbl.conf;
+
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.lang.NonNull;
 
 /**
- * 查询结果空异常
+ * 七牛云配置
  *
  * @author JamesZBL
- * @date 2018-04-19
+ * @date 2018-04-08
  */
-public class EmptyResultException extends IllegalStateException {
+@Getter
+@Setter
+@Configuration
+@ConfigurationProperties(prefix = "qiniu")
+public class QiNiuProperties {
 
+  @NonNull
+  private String accessKey;
+  @NonNull
+  private String secretKey;
+  @NonNull
+  private String domain;
+  @NonNull
+  private Integer timeout;
 }

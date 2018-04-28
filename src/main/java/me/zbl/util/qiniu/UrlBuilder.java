@@ -14,10 +14,10 @@
  * limitations under the License.
  *
  */
-package me.zbl.diulala.util.qiniu;
+package me.zbl.util.qiniu;
 
 import com.qiniu.util.Auth;
-import me.zbl.diulala.conf.QiNiuProperties;
+import me.zbl.conf.QiNiuProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

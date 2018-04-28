@@ -14,9 +14,9 @@
  * limitations under the License.
  *
  */
-package me.zbl.diulala.conf;
+package me.zbl.conf;
 
-import me.zbl.diulala.auth.entity.TokenEntity;
+import me.zbl.auth.entity.TokenEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

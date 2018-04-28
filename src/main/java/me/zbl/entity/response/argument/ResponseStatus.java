@@ -14,20 +14,16 @@
  * limitations under the License.
  *
  */
-package me.zbl.diulala.entity.response;
-
-import lombok.Getter;
-import lombok.Setter;
-import me.zbl.diulala.entity.persistence.UrpInfoHebust;
+package me.zbl.entity.response.argument;
 
 /**
+ * 响应状态码
+ *
  * @author JamesZBL
- * @date 2018-04-08
+ * @date 2018-04-02
  */
-@Getter
-@Setter
-public class URPInfo {
+public interface ResponseStatus {
 
-  private String imgurl;
-  private UrpInfoHebust urpinfo;
+  String EMPTY_RESULT = "202";
+  String NONEMPTY_RESULT = "201";
 }

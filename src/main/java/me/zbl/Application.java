@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 /**
- * 丢啦啦服务端程序
+ * Web Application
  *
  * @author JamesZBL
  * @date 2018-04-03

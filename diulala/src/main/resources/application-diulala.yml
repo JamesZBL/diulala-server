@@ -1,0 +1,5 @@
+wx:
+  appId: wx698220e7667a01e3
+  appSecret: 882d28c93d94c8b7a5450fd0d45a052f
+  urlBase: https://api.weixin.qq.com
+  urlCode2Session: /sns/jscode2session

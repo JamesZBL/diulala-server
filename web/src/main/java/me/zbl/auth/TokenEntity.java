@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package me.zbl.auth.entity;
+package me.zbl.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

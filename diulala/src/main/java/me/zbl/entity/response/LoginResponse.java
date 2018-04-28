@@ -14,30 +14,20 @@
  * limitations under the License.
  *
  */
-package me.zbl.auth;
+package me.zbl.entity.response;
 
-import me.zbl.auth.entity.TokenEntity;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
- * token 管理抽象类
- * <p>
- * 实现对 token 的公共操作
- *
  * @author JamesZBL
- * @date 2018-04-19
+ * @date 2018-04-28
  */
-public abstract class AbstractTokenManager implements TokenManager {
+@Getter
+@Setter
+@AllArgsConstructor
+public class LoginResponse {
 
-  /**
-   * 将 token 反序列化为 token 对象
-   *
-   * @param token token 字符串
-   *
-   * @return token 对象
-   */
-  @Override
-  public TokenEntity deserialize(String token) {
-    String[] arr = token.split("-");
-    return new TokenEntity(Integer.valueOf(arr[0]), arr[1]);
-  }
+  private String userId;
 }

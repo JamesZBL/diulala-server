@@ -16,7 +16,7 @@
  */
 package me.zbl.conf;
 
-import me.zbl.auth.entity.TokenEntity;
+import me.zbl.auth.TokenEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -16,7 +16,7 @@
  */
 package me.zbl.auth;
 
-import me.zbl.auth.entity.TokenEntity;
+import org.springframework.stereotype.Component;
 
 /**
  * 用于 Token 维护操作的接口
@@ -24,17 +24,18 @@ import me.zbl.auth.entity.TokenEntity;
  * @author JamesZBL
  * @date 2018-04-18
  */
-public interface TokenManager {
+@Component
+public interface TokenManager<ID, T> {
 
   /**
    * 生成 Token
    * 每个 Token 都和一个用户绑定
    *
-   * @param userId 用户 ID
+   * @param id 用户唯一表示
    *
    * @return 新生成的 Token
    */
-  TokenEntity createToken(Integer userId);
+  T createToken(ID id);
 
   /**
    * 校验 Token 的有效性
@@ -43,7 +44,7 @@ public interface TokenManager {
    *
    * @return 是否有效
    */
-  boolean authentication(TokenEntity token);
+  boolean authentication(T token);
 
   /**
    * 校验 Token 的有效性
@@ -58,16 +59,21 @@ public interface TokenManager {
    * 使用户的当前 Token 失效
    * 用于登出
    *
-   * @param userId 用户 ID
+   * @param id 用户 ID
    */
-  void removeToken(Integer userId);
+  void removeToken(ID id);
 
   /**
    * 将 token 反序列化为 token 对象
    *
-   * @param token token 字符串
-   *
    * @return token 对象
    */
-  TokenEntity deserialize(String token);
+  T deserialize(String token);
+
+  /**
+   * 将 token 序列化为 token 字符串
+   *
+   * @return token 字符串
+   */
+  String serialize(T token);
 }

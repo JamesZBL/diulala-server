@@ -4,9 +4,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>me.zbl</groupId>
-    <artifactId>diulala-server</artifactId>
+    <artifactId>diulala-parent</artifactId>
     <version>0.1-snapshot</version>
-    <packaging>jar</packaging>
+    <modules>
+        <module>diulala</module>
+        <module>web</module>
+    </modules>
+    <packaging>pom</packaging>
 
     <name>urpsearchengine</name>
     <description>HEBUST URP system search engine.</description>

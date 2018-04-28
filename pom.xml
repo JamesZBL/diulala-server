@@ -5,7 +5,7 @@
 
     <groupId>me.zbl</groupId>
     <artifactId>diulala-server</artifactId>
-    <version>1.2-snapshot</version>
+    <version>0.1-snapshot</version>
     <packaging>jar</packaging>
 
     <name>urpsearchengine</name>

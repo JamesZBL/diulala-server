@@ -1,0 +1,21 @@
+spring:
+  application:
+      name: URPSearchEngine
+  devtools:
+    restart:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/urp_search_engine
+    username: root
+    password: root
+  redis:
+    host: localhost
+    port: 6379
+    password: root
+server:
+  port: 8084
+

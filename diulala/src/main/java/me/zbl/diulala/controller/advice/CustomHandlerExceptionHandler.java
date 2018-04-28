@@ -16,13 +16,12 @@
  */
 package me.zbl.diulala.controller.advice;
 
+import me.zbl.diulala.exception.AuthFailedException;
 import me.zbl.entity.response.MessageEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-
-import javax.security.auth.login.FailedLoginException;
 
 /**
  * 异常处理
@@ -38,7 +37,7 @@ public class CustomHandlerExceptionHandler {
   /**
    * 小程序登录异常
    */
-  @ExceptionHandler(value = FailedLoginException.class)
+  @ExceptionHandler(value = AuthFailedException.class)
   public ResponseEntity<MessageEntity> handleAuthException() {
     return new ResponseEntity<>(new MessageEntity(ERROR_MSG), HttpStatus.UNAUTHORIZED);
   }

@@ -56,9 +56,9 @@ public class LoginController {
     try {
       restTemplate.getForObject(wxProperties.getUrlCode2Session(), ApiLoginResponse.class, params);
     } catch (RestClientException e) {
-      e.printStackTrace();
       throw new AuthFailedException();
     }
-    return new LoginResponse(response.getBody().getOpenid());
+    String openid = response.getBody().getOpenid();
+    return new LoginResponse(openid);
   }
 }

@@ -14,23 +14,19 @@
  * limitations under the License.
  *
  */
-package me.zbl.conf;
+package me.zbl.diulala.conf;
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 /**
- * Web 配置
+ * 配置 JPA Repository
  *
  * @author JamesZBL
- * @date 2018-04-19
+ * @date 2018-04-29
  */
 @Configuration
-public class WebConfig implements WebMvcConfigurer {
+@EnableJpaRepositories(basePackages = {"me.zbl.diulala.repository"})
+public class JPARepoConf {
 
-  @Override
-  public void addResourceHandlers(ResourceHandlerRegistry registry) {
-    registry.addResourceHandler("/swaggerui.html");
-  }
 }

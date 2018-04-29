@@ -14,23 +14,27 @@
  * limitations under the License.
  *
  */
-package me.zbl.conf;
+package me.zbl.diulala.service.impl;
 
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import me.zbl.diulala.repository.UserRepository;
+import me.zbl.diulala.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
- * Web 配置
+ * 用户服务
  *
  * @author JamesZBL
- * @date 2018-04-19
+ * @date 2018-04-29
  */
-@Configuration
-public class WebConfig implements WebMvcConfigurer {
+@Service
+public class UserServiceImpl implements UserService {
+
+  @Autowired
+  private UserRepository userRepo;
 
   @Override
-  public void addResourceHandlers(ResourceHandlerRegistry registry) {
-    registry.addResourceHandler("/swaggerui.html");
+  public boolean existUser(String userid) {
+    return userRepo.findById(userid).isPresent();
   }
 }

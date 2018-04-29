@@ -14,23 +14,20 @@
  * limitations under the License.
  *
  */
-package me.zbl.conf;
-
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+package me.zbl.diulala.service;
 
 /**
- * Web 配置
+ * 用户服务
  *
  * @author JamesZBL
- * @date 2018-04-19
+ * @date 2018-04-29
  */
-@Configuration
-public class WebConfig implements WebMvcConfigurer {
+public interface UserService {
 
-  @Override
-  public void addResourceHandlers(ResourceHandlerRegistry registry) {
-    registry.addResourceHandler("/swaggerui.html");
-  }
+  /**
+   * 查询用户是否存在
+   *
+   * @param userid 微信平台 openId
+   */
+  boolean existUser(String userid);
 }

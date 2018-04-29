@@ -22,7 +22,6 @@ import io.swagger.annotations.ApiOperation;
 import me.zbl.diulala.conf.WXProperties;
 import me.zbl.diulala.entity.response.ApiLoginResponse;
 import me.zbl.diulala.entity.response.LoginResponse;
-import me.zbl.diulala.exception.AuthFailedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,7 +37,7 @@ import java.util.Map;
  * @author JamesZBL
  * @date 2018-04-28
  */
-@Api(value = "小程序登录")
+@Api(value = "小程序登录", tags = {"登录操作"})
 @RestController
 public class LoginController {
 
@@ -50,8 +49,9 @@ public class LoginController {
 
   @ApiOperation(value = "通过 js_code 换取 openid 及 session_key")
   @ApiImplicitParam(name = "code", value = "wx.login 返回的临时凭证", required = true, dataType = "String")
+
   @GetMapping("/w_login")
-  public LoginResponse login(String code) throws AuthFailedException {
+  public LoginResponse login(String code) {
     Map<String, String> params = new HashMap<>();
     params.put("appid", wxProperties.getAppId());
     params.put("secret", wxProperties.getAppSecret());

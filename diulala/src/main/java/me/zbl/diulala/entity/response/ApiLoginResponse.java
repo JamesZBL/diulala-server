@@ -27,6 +27,6 @@ import lombok.Setter;
 @Setter
 public class ApiLoginResponse {
 
-  private Integer errcode;
-  private String errmsg;
+  private String openid;
+  private String session_key;
 }

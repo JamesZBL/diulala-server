@@ -24,7 +24,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
@@ -50,13 +49,10 @@ public class LoginController {
     Map<String, String> params = new HashMap<>();
     params.put("appid", wxProperties.getAppId());
     params.put("secret", wxProperties.getAppSecret());
-    // todo 改成 code
-    params.put("js_code", "22222");
+    params.put("js_code", code);
     params.put("grant_type", "authorization_code");
-    ResponseEntity<ApiLoginResponse> response=  restTemplate.getForEntity(wxProperties.getUrlCode2Session(), ApiLoginResponse.class, params);
-
-    //    todo delete this line
-    String openid = response.getBody().getErrmsg();
+    ResponseEntity<ApiLoginResponse> response = restTemplate.getForEntity(wxProperties.getUrlCode2Session(), ApiLoginResponse.class, params);
+    String openid = response.getBody().getOpenid();
     return new LoginResponse(openid);
   }
 }

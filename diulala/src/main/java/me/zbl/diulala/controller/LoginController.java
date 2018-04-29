@@ -53,14 +53,9 @@ public class LoginController {
     // todo 改成 code
     params.put("js_code", "22222");
     params.put("grant_type", "authorization_code");
-    ResponseEntity<ApiLoginResponse> response = null;
-    try {
-      restTemplate.getForObject(wxProperties.getUrlCode2Session(), ApiLoginResponse.class, params);
-    } catch (RestClientException e) {
-      e.printStackTrace();
-      throw new AuthFailedException();
-    }
-    //    todo delte this line
+    ResponseEntity<ApiLoginResponse> response=  restTemplate.getForEntity(wxProperties.getUrlCode2Session(), ApiLoginResponse.class, params);
+
+    //    todo delete this line
     String openid = response.getBody().getErrmsg();
     return new LoginResponse(openid);
   }

@@ -18,8 +18,8 @@ package me.zbl.controller.base;
 
 import me.zbl.entity.response.MessageEntity;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
@@ -37,10 +37,9 @@ public class HandlerExceptionHandler {
   /**
    * 无匹配请求映射异常
    */
+  @ResponseStatus(value = HttpStatus.NOT_FOUND)
   @ExceptionHandler(value = NoHandlerFoundException.class)
-  public ResponseEntity<MessageEntity> handleNoHandlerFoundException(NoHandlerFoundException ex) {
-    return new ResponseEntity<>(
-            new MessageEntity(MSG_NOT_FOUNT),
-            HttpStatus.NOT_FOUND);
+  public MessageEntity handleNoHandlerFoundException(NoHandlerFoundException ex) {
+    return new MessageEntity(MSG_NOT_FOUNT);
   }
 }

@@ -21,6 +21,7 @@ import me.zbl.exception.EmptyResultException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
@@ -37,8 +38,9 @@ public class ResultExceptionHandler {
   /**
    * 查询结果为空异常处理
    */
+  @ResponseStatus(value = HttpStatus.NOT_FOUND)
   @ExceptionHandler(value = EmptyResultException.class)
-  public ResponseEntity<MessageEntity> handleResultEmptyException() {
-    return new ResponseEntity<>(new MessageEntity(MSG_EMPTY_RESULT), HttpStatus.NOT_FOUND);
+  public MessageEntity handleResultEmptyException() {
+    return new MessageEntity(MSG_EMPTY_RESULT);
   }
 }

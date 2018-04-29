@@ -33,13 +33,23 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 public class HandlerExceptionHandler {
 
   private static final String MSG_NOT_FOUNT = "访问的资源不存在";
+  private static final String MSG_ILLEGAL_ARGUMENT = "参数有误";
 
   /**
-   * 无匹配请求映射异常
+   * 无匹配请求映射
    */
   @ResponseStatus(value = HttpStatus.NOT_FOUND)
   @ExceptionHandler(value = NoHandlerFoundException.class)
   public MessageEntity handleNoHandlerFoundException(NoHandlerFoundException ex) {
     return new MessageEntity(MSG_NOT_FOUNT);
+  }
+
+  /**
+   * 参数参数异常
+   */
+  @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
+  @ExceptionHandler(value = IllegalArgumentException.class)
+  public MessageEntity handleIllegalArugumentException(IllegalArgumentException ex) {
+    return new MessageEntity(MSG_ILLEGAL_ARGUMENT);
   }
 }

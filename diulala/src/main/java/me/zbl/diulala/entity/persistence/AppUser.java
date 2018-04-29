@@ -21,10 +21,10 @@ import java.util.Objects;
 
 /**
  * @author JamesZBL
- * @date 2018-04-29
+ * @date 2018-04-30
  */
 @Entity
-@Table(name = "app_user", schema = "diulala", catalog = "")
+@Table(name = "app_user", schema = "diulala")
 public class AppUser {
 
   private String openId;
@@ -40,7 +40,7 @@ public class AppUser {
   private String country;
 
   @Id
-  @Column(name = "openId", nullable = false, length = 64)
+  @Column(name = "open_id")
   public String getOpenId() {
     return openId;
   }
@@ -50,7 +50,7 @@ public class AppUser {
   }
 
   @Basic
-  @Column(name = "nickName", nullable = false, length = 64)
+  @Column(name = "nickName")
   public String getNickName() {
     return nickName;
   }
@@ -60,7 +60,7 @@ public class AppUser {
   }
 
   @Basic
-  @Column(name = "unionId", nullable = true, length = 64)
+  @Column(name = "unionId")
   public String getUnionId() {
     return unionId;
   }
@@ -70,7 +70,7 @@ public class AppUser {
   }
 
   @Basic
-  @Column(name = "avatarUrl", nullable = false, length = 255)
+  @Column(name = "avatarUrl")
   public String getAvatarUrl() {
     return avatarUrl;
   }
@@ -80,7 +80,7 @@ public class AppUser {
   }
 
   @Basic
-  @Column(name = "realName", nullable = true, length = 64)
+  @Column(name = "realName")
   public String getRealName() {
     return realName;
   }
@@ -90,7 +90,7 @@ public class AppUser {
   }
 
   @Basic
-  @Column(name = "gender", nullable = false)
+  @Column(name = "gender")
   public Byte getGender() {
     return gender;
   }
@@ -100,7 +100,7 @@ public class AppUser {
   }
 
   @Basic
-  @Column(name = "contactMethod", nullable = false, length = 64)
+  @Column(name = "contactMethod")
   public String getContactMethod() {
     return contactMethod;
   }
@@ -110,7 +110,7 @@ public class AppUser {
   }
 
   @Basic
-  @Column(name = "contactString", nullable = false, length = 128)
+  @Column(name = "contactString")
   public String getContactString() {
     return contactString;
   }
@@ -120,7 +120,7 @@ public class AppUser {
   }
 
   @Basic
-  @Column(name = "city", nullable = false, length = 64)
+  @Column(name = "city")
   public String getCity() {
     return city;
   }
@@ -130,7 +130,7 @@ public class AppUser {
   }
 
   @Basic
-  @Column(name = "province", nullable = false, length = 64)
+  @Column(name = "province")
   public String getProvince() {
     return province;
   }
@@ -140,7 +140,7 @@ public class AppUser {
   }
 
   @Basic
-  @Column(name = "country", nullable = false, length = 64)
+  @Column(name = "country")
   public String getCountry() {
     return country;
   }
@@ -153,18 +153,18 @@ public class AppUser {
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
-    AppUser appUser = (AppUser) o;
-    return Objects.equals(openId, appUser.openId) &&
-            Objects.equals(nickName, appUser.nickName) &&
-            Objects.equals(unionId, appUser.unionId) &&
-            Objects.equals(avatarUrl, appUser.avatarUrl) &&
-            Objects.equals(realName, appUser.realName) &&
-            Objects.equals(gender, appUser.gender) &&
-            Objects.equals(contactMethod, appUser.contactMethod) &&
-            Objects.equals(contactString, appUser.contactString) &&
-            Objects.equals(city, appUser.city) &&
-            Objects.equals(province, appUser.province) &&
-            Objects.equals(country, appUser.country);
+    AppUser tAppUser = (AppUser) o;
+    return Objects.equals(openId, tAppUser.openId) &&
+            Objects.equals(nickName, tAppUser.nickName) &&
+            Objects.equals(unionId, tAppUser.unionId) &&
+            Objects.equals(avatarUrl, tAppUser.avatarUrl) &&
+            Objects.equals(realName, tAppUser.realName) &&
+            Objects.equals(gender, tAppUser.gender) &&
+            Objects.equals(contactMethod, tAppUser.contactMethod) &&
+            Objects.equals(contactString, tAppUser.contactString) &&
+            Objects.equals(city, tAppUser.city) &&
+            Objects.equals(province, tAppUser.province) &&
+            Objects.equals(country, tAppUser.country);
   }
 
   @Override

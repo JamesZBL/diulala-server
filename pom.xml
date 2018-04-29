@@ -13,8 +13,8 @@
     </modules>
     <packaging>pom</packaging>
 
-    <name>urpsearchengine</name>
-    <description>HEBUST URP system search engine.</description>
+    <name>diulala-server</name>
+    <description>Diulala server.</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -84,6 +84,12 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.5</version>
+        </dependency>
+
         <!--<dependency>-->
             <!--<groupId>org.springframework.security</groupId>-->
             <!--<artifactId>spring-security-web</artifactId>-->

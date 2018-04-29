@@ -50,15 +50,18 @@ public class LoginController {
     Map<String, String> params = new HashMap<>();
     params.put("appid", wxProperties.getAppId());
     params.put("secret", wxProperties.getAppSecret());
-    params.put("js_code", code);
+    // todo 改成 code
+    params.put("js_code", "22222");
     params.put("grant_type", "authorization_code");
     ResponseEntity<ApiLoginResponse> response = null;
     try {
       restTemplate.getForObject(wxProperties.getUrlCode2Session(), ApiLoginResponse.class, params);
     } catch (RestClientException e) {
+      e.printStackTrace();
       throw new AuthFailedException();
     }
-    String openid = response.getBody().getOpenid();
+    //    todo delte this line
+    String openid = response.getBody().getErrmsg();
     return new LoginResponse(openid);
   }
 }

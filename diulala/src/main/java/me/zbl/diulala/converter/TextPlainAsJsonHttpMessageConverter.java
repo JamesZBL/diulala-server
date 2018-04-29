@@ -14,31 +14,25 @@
  * limitations under the License.
  *
  */
-package me.zbl.controller.base;
+package me.zbl.diulala.converter;
 
-import me.zbl.entity.response.MessageEntity;
-import org.springframework.boot.web.servlet.error.ErrorController;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * 错误消息返回
+ * 将 text/plain 作为 json 进行解析
  *
  * @author JamesZBL
- * @date 2018-04-19
+ * @date 2018-04-29
  */
-@RestController
-public class ErrorMsgController implements ErrorController {
+public class TextPlainAsJsonHttpMessageConverter extends MappingJackson2HttpMessageConverter {
 
-  private static final String MSG_INTERNAL_ERROR = "服务器错误";
-
-  @GetMapping("/error")
-  public MessageEntity error() {
-    return new MessageEntity(MSG_INTERNAL_ERROR);
-  }
-
-  @Override
-  public String getErrorPath() {
-    return "/error";
+  public TextPlainAsJsonHttpMessageConverter() {
+    List<MediaType> mediaTypes = new ArrayList<>();
+    mediaTypes.add(MediaType.TEXT_PLAIN);
+    setSupportedMediaTypes(mediaTypes);
   }
 }

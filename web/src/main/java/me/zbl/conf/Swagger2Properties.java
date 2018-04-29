@@ -16,19 +16,29 @@
  */
 package me.zbl.conf;
 
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.lang.NonNull;
+import org.springframework.stereotype.Component;
 
 /**
+ * Swagger2 配置属性
+ *
  * @author JamesZBL
- * @date 2018-04-19
+ * @date 2018-04-29
  */
-@Configuration
-public class WebConfig implements WebMvcConfigurer {
+@Getter
+@Setter
+@Component
+@ConfigurationProperties(prefix = "swagger2")
+public class Swagger2Properties {
 
-  @Override
-  public void addResourceHandlers(ResourceHandlerRegistry registry) {
-    registry.addResourceHandler("/swaggerui.html");
-  }
+  @NonNull
+  private String title;
+
+  private String basePackage;
+  private String description;
+  private String version;
+  private String termsOfServiceUrl;
 }

@@ -3,3 +3,6 @@ wx:
   appSecret: 882d28c93d94c8b7a5450fd0d45a052f
   urlBase: https://api.weixin.qq.com
   urlCode2Session: /sns/jscode2session
+
+swagger2:
+  title: api 文档 | 丢啦啦

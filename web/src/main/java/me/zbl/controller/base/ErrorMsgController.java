@@ -20,6 +20,7 @@ import me.zbl.entity.response.MessageEntity;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import springfox.documentation.annotations.ApiIgnore;
 
 /**
  * 错误消息返回
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author JamesZBL
  * @date 2018-04-19
  */
+@ApiIgnore
 @RestController
 public class ErrorMsgController implements ErrorController {
 

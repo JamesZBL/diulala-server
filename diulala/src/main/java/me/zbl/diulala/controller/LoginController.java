@@ -16,6 +16,9 @@
  */
 package me.zbl.diulala.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
 import me.zbl.diulala.conf.WXProperties;
 import me.zbl.diulala.entity.response.ApiLoginResponse;
 import me.zbl.diulala.entity.response.LoginResponse;
@@ -35,6 +38,7 @@ import java.util.Map;
  * @author JamesZBL
  * @date 2018-04-28
  */
+@Api(value = "小程序登录")
 @RestController
 public class LoginController {
 
@@ -44,6 +48,8 @@ public class LoginController {
   @Autowired
   private RestTemplate restTemplate;
 
+  @ApiOperation(value = "通过 js_code 换取 openid 及 session_key")
+  @ApiImplicitParam(name = "code", value = "wx.login 返回的临时凭证", required = true, dataType = "String")
   @GetMapping("/w_login")
   public LoginResponse login(String code) throws AuthFailedException {
     Map<String, String> params = new HashMap<>();

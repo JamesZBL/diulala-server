@@ -47,7 +47,7 @@ public class HandlerExceptionHandler {
   /**
    * 参数参数异常
    */
-  @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
+  @ResponseStatus(value = HttpStatus.BAD_REQUEST)
   @ExceptionHandler(value = IllegalArgumentException.class)
   public MessageEntity handleIllegalArugumentException(IllegalArgumentException ex) {
     return new MessageEntity(MSG_ILLEGAL_ARGUMENT);

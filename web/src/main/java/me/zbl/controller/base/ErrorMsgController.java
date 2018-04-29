@@ -32,7 +32,7 @@ import springfox.documentation.annotations.ApiIgnore;
 @RestController
 public class ErrorMsgController implements ErrorController {
 
-  private static final String MSG_INTERNAL_ERROR = "服务器错误";
+  private static final String MSG_INTERNAL_ERROR = "访问的地址无效";
 
   @GetMapping("/error")
   public MessageEntity error() {

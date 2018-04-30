@@ -27,6 +27,7 @@ import me.zbl.entity.response.MessageEntity;
 public class R {
 
   private static final String MSG_SUCCESS = "操作成功";
+  private static final String MSG_FAILED = "操作失败";
 
   /**
    * 操作成功
@@ -41,6 +42,22 @@ public class R {
    * @param msg 自定义消息
    */
   public static MessageEntity success(String msg) {
+    return new MessageEntity(msg);
+  }
+
+  /**
+   * 操作失败
+   */
+  public static MessageEntity fail() {
+    return new MessageEntity(MSG_FAILED);
+  }
+
+  /**
+   * 操作失败
+   *
+   * @param msg 自定义消息
+   */
+  public static MessageEntity fail(String msg) {
     return new MessageEntity(msg);
   }
 }

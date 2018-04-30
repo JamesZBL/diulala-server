@@ -18,6 +18,7 @@ package me.zbl.controller.base;
 
 import me.zbl.entity.response.MessageEntity;
 import me.zbl.exception.EmptyResultException;
+import me.zbl.exception.FailOperationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -53,5 +54,14 @@ public class ResultExceptionHandler {
   @ExceptionHandler(value = BindException.class)
   public MessageEntity handleBindException() {
     return new MessageEntity(MSG_BIND_ERROR);
+  }
+
+  /**
+   * 操作失败异常
+   */
+  @ResponseStatus(value = HttpStatus.NOT_FOUND)
+  @ExceptionHandler(value = FailOperationException.class)
+  public MessageEntity handleFailOperationException() {
+    return R.fail();
   }
 }

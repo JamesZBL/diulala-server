@@ -19,6 +19,7 @@ package me.zbl.diulala.service.impl;
 import me.zbl.diulala.entity.persistence.AppUser;
 import me.zbl.diulala.repository.UserRepository;
 import me.zbl.diulala.service.UserService;
+import me.zbl.exception.FailOperationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,12 +49,23 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public AppUser fullFillUserInfo(AppUser appUser) {
-    return userRepo.save(appUser);
+  public AppUser fullFillUserInfo(AppUser appUser) throws FailOperationException {
+    AppUser result = null;
+    try {
+      result = userRepo.save(appUser);
+    } catch (Exception e) {
+      throw new FailOperationException();
+    }
+    return result;
   }
 
   @Override
-  public AppUser updateUserInfo(AppUser appUser) {
-    return userRepo.save(appUser);
+  public AppUser updateUserInfo(AppUser appUser) throws FailOperationException {
+    try {
+      return userRepo.save(appUser);
+    } catch (Exception e) {
+      e.printStackTrace();
+      throw new FailOperationException();
+    }
   }
 }

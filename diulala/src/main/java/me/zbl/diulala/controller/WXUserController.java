@@ -29,6 +29,7 @@ import me.zbl.diulala.entity.response.CheckUserResponse;
 import me.zbl.diulala.entity.response.LoginResponse;
 import me.zbl.diulala.service.UserService;
 import me.zbl.entity.response.MessageEntity;
+import me.zbl.exception.FailOperationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -114,7 +115,7 @@ public class WXUserController extends BaseController {
                   @ApiImplicitParam(name = "country", value = "国家", required = true)}
   )
   @PostMapping("/user/register")
-  public MessageEntity fillUserInfo(@ApiIgnore AppUser appUser) {
+  public MessageEntity fillUserInfo(@ApiIgnore AppUser appUser) throws FailOperationException {
     AppUser result = userService.fullFillUserInfo(appUser);
     return R.success();
   }
@@ -135,7 +136,7 @@ public class WXUserController extends BaseController {
                   @ApiImplicitParam(name = "country", value = "国家", required = true)}
   )
   @PutMapping("/user/update")
-  public MessageEntity updateUserInfo(@ApiIgnore @RequestBody AppUser appUser) {
+  public MessageEntity updateUserInfo(@ApiIgnore @RequestBody AppUser appUser) throws FailOperationException {
     AppUser result = userService.updateUserInfo(appUser);
     return R.success();
   }

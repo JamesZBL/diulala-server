@@ -17,6 +17,7 @@
 package me.zbl.diulala.service;
 
 import me.zbl.diulala.entity.persistence.AppUser;
+import me.zbl.exception.FailOperationException;
 
 import java.util.Optional;
 
@@ -49,12 +50,12 @@ public interface UserService {
    *
    * @param appUser app 用户
    */
-  AppUser fullFillUserInfo(AppUser appUser);
+  AppUser fullFillUserInfo(AppUser appUser) throws FailOperationException;
 
   /**
    * 修改用户信息
    *
    * @param appUser app 用户
    */
-  AppUser updateUserInfo(AppUser appUser);
+  AppUser updateUserInfo(AppUser appUser) throws FailOperationException;
 }

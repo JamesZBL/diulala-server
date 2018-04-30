@@ -16,19 +16,22 @@
  */
 package me.zbl.diulala.controller;
 
-import io.swagger.annotations.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import me.zbl.controller.base.BaseController;
+import me.zbl.controller.base.R;
 import me.zbl.diulala.conf.WXProperties;
 import me.zbl.diulala.entity.persistence.AppUser;
 import me.zbl.diulala.entity.response.ApiLoginResponse;
 import me.zbl.diulala.entity.response.CheckUserResponse;
 import me.zbl.diulala.entity.response.LoginResponse;
 import me.zbl.diulala.service.UserService;
+import me.zbl.entity.response.MessageEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import springfox.documentation.annotations.ApiIgnore;
 
@@ -58,7 +61,7 @@ public class WXUserController extends BaseController {
   @ApiImplicitParams(
           @ApiImplicitParam(name = "code", value = "wx.login 返回的临时凭证", required = true)
   )
-  @GetMapping("/w_login")
+  @GetMapping("/user/login")
   public LoginResponse login(String code) {
     Map<String, String> params = new HashMap<>();
     params.put("appid", wxProperties.getAppId());
@@ -75,7 +78,7 @@ public class WXUserController extends BaseController {
   @ApiImplicitParams(
           @ApiImplicitParam(name = "userid", value = "小程序平台用户的 openid", required = true)
   )
-  @GetMapping("/w_hasuser")
+  @GetMapping("/user/hasuser")
   public CheckUserResponse checkUserExists(
           String userid,
           @ApiIgnore @ModelAttribute
@@ -89,8 +92,51 @@ public class WXUserController extends BaseController {
   @ApiImplicitParams(
           @ApiImplicitParam(name = "userid", value = "小程序平台用户的 openid", required = true)
   )
-  @GetMapping("/w_getuser")
+  @GetMapping("/user/getuser")
   public AppUser findWXUser(String userid) {
     return wrapData(userService.findUser(userid));
+  }
+
+
+  @ApiOperation(value = "用户注册（完善用户个人信息）")
+  @ApiImplicitParams(
+          value = {
+                  @ApiImplicitParam(name = "openId", value = "小程序平台用户的 openid", required = true),
+                  @ApiImplicitParam(name = "nickName", value = "昵称", required = true),
+                  @ApiImplicitParam(name = "unionId", value = "用户在本小程序平台的唯一标识"),
+                  @ApiImplicitParam(name = "avatarUrl", value = "头像 URL", required = true),
+                  @ApiImplicitParam(name = "realName", value = "真实姓名"),
+                  @ApiImplicitParam(name = "gender", value = "性别", required = true),
+                  @ApiImplicitParam(name = "contactMethod", value = "联系途径（电话，QQ，微信等）", required = true),
+                  @ApiImplicitParam(name = "contactString", value = "联系方式（具体的号码）", required = true),
+                  @ApiImplicitParam(name = "city", value = "城市", required = true),
+                  @ApiImplicitParam(name = "province", value = "省份", required = true),
+                  @ApiImplicitParam(name = "country", value = "国家", required = true)}
+  )
+  @PostMapping("/user/register")
+  public MessageEntity fillUserInfo(@ApiIgnore AppUser appUser) {
+    AppUser result = userService.fullFillUserInfo(appUser);
+    return R.success();
+  }
+
+  @ApiOperation(value = "修改用户个人信息")
+  @ApiImplicitParams(
+          value = {
+                  @ApiImplicitParam(name = "openId", value = "小程序平台用户的 openid", required = true),
+                  @ApiImplicitParam(name = "nickName", value = "昵称", required = true),
+                  @ApiImplicitParam(name = "unionId", value = "用户在本小程序平台的唯一标识"),
+                  @ApiImplicitParam(name = "avatarUrl", value = "头像 URL", required = true),
+                  @ApiImplicitParam(name = "realName", value = "真实姓名"),
+                  @ApiImplicitParam(name = "gender", value = "性别", required = true),
+                  @ApiImplicitParam(name = "contactMethod", value = "联系途径（电话，QQ，微信等）", required = true),
+                  @ApiImplicitParam(name = "contactString", value = "联系方式（具体的号码）", required = true),
+                  @ApiImplicitParam(name = "city", value = "城市", required = true),
+                  @ApiImplicitParam(name = "province", value = "省份", required = true),
+                  @ApiImplicitParam(name = "country", value = "国家", required = true)}
+  )
+  @PutMapping("/user/update")
+  public MessageEntity updateUserInfo(@ApiIgnore @RequestBody AppUser appUser) {
+    AppUser result = userService.updateUserInfo(appUser);
+    return R.success();
   }
 }

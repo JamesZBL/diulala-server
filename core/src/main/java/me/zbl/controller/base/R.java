@@ -14,24 +14,33 @@
  * limitations under the License.
  *
  */
-package me.zbl.conf;
+package me.zbl.controller.base;
 
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import me.zbl.entity.response.MessageEntity;
 
 /**
- * Web 配置
+ * 返回操作结果
  *
  * @author JamesZBL
- * @date 2018-04-19
+ * @date 2018-04-30
  */
-@Configuration
-public class WebConfig implements WebMvcConfigurer {
+public class R {
 
-  @Override
-  public void addResourceHandlers(ResourceHandlerRegistry registry) {
-    //    registry.addResourceHandler("/swagger-ui.html");
+  private static final String MSG_SUCCESS = "操作成功";
+
+  /**
+   * 操作成功
+   */
+  public static MessageEntity success() {
+    return new MessageEntity(MSG_SUCCESS);
   }
 
+  /**
+   * 操作成功
+   *
+   * @param msg 自定义消息
+   */
+  public static MessageEntity success(String msg) {
+    return new MessageEntity(msg);
+  }
 }

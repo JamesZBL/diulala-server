@@ -19,10 +19,11 @@ package me.zbl.controller.base;
 import me.zbl.entity.response.MessageEntity;
 import me.zbl.exception.EmptyResultException;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
 
 /**
  * 数据异常处理
@@ -34,6 +35,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class ResultExceptionHandler {
 
   private static final String MSG_EMPTY_RESULT = "未找到结果";
+  private static final String MSG_BIND_ERROR = "参数不合法";
 
   /**
    * 查询结果为空异常处理
@@ -42,5 +44,14 @@ public class ResultExceptionHandler {
   @ExceptionHandler(value = EmptyResultException.class)
   public MessageEntity handleResultEmptyException() {
     return new MessageEntity(MSG_EMPTY_RESULT);
+  }
+
+  /**
+   * 参数绑定异常
+   */
+  @ResponseStatus(value = HttpStatus.NOT_FOUND)
+  @ExceptionHandler(value = BindException.class)
+  public MessageEntity handleBindException() {
+    return new MessageEntity(MSG_BIND_ERROR);
   }
 }

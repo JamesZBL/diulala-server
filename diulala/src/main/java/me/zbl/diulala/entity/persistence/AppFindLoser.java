@@ -16,10 +16,9 @@
  */
 package me.zbl.diulala.entity.persistence;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.Objects;
 
 /**
@@ -31,7 +30,6 @@ import java.util.Objects;
 public class AppFindLoser {
 
   private Integer id;
-  @JsonIgnore
   private AppUser appUserByCaughtUser;
   private String category;
   private String name;
@@ -40,6 +38,8 @@ public class AppFindLoser {
   private BigDecimal latitude;
   private String poi;
   private String description;
+  private Timestamp gmtCreated;
+  private Timestamp gmtModified;
 
   @Id
   @Column(name = "id")
@@ -143,5 +143,25 @@ public class AppFindLoser {
 
   public void setDescription(String description) {
     this.description = description;
+  }
+
+  @Basic
+  @Column(name = "gmt_created")
+  public Timestamp getGmtCreated() {
+    return gmtCreated;
+  }
+
+  public void setGmtCreated(Timestamp gmtCreated) {
+    this.gmtCreated = gmtCreated;
+  }
+
+  @Basic
+  @Column(name = "gmt_modified")
+  public Timestamp getGmtModified() {
+    return gmtModified;
+  }
+
+  public void setGmtModified(Timestamp gmtModified) {
+    this.gmtModified = gmtModified;
   }
 }

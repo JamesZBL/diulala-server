@@ -46,4 +46,14 @@ public class UserServiceImpl implements UserService {
   public Optional<AppUser> findUser(String userid) {
     return userRepo.findById(userid);
   }
+
+  @Override
+  public AppUser fullFillUserInfo(AppUser appUser) {
+    return userRepo.save(appUser);
+  }
+
+  @Override
+  public AppUser updateUserInfo(AppUser appUser) {
+    return userRepo.save(appUser);
+  }
 }

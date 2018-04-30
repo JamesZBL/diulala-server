@@ -43,4 +43,18 @@ public interface UserService {
    * @return AppUser
    */
   Optional<AppUser> findUser(String userid);
+
+  /**
+   * 完善用户信息
+   *
+   * @param appUser app 用户
+   */
+  AppUser fullFillUserInfo(AppUser appUser);
+
+  /**
+   * 修改用户信息
+   *
+   * @param appUser app 用户
+   */
+  AppUser updateUserInfo(AppUser appUser);
 }

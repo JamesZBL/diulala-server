@@ -17,6 +17,8 @@
 package me.zbl.diulala.entity.persistence;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -26,20 +28,32 @@ import java.util.Objects;
  * @author JamesZBL
  * @date 2018-04-30
  */
+@ApiModel
 @Entity
 @Table(name = "app_user", schema = "diulala", catalog = "")
 public class AppUser {
 
+  @ApiModelProperty(value = "用户在小程序平台的 openId")
   private String openId;
+  @ApiModelProperty(value = "用户昵称")
   private String nickName;
+  @ApiModelProperty(value = "用户在本小程序的唯一标识")
   private String unionId;
+  @ApiModelProperty(value = "头像 URL")
   private String avatarUrl;
+  @ApiModelProperty(value = "真实姓名")
   private String realName;
+  @ApiModelProperty(value = "性别")
   private Byte gender;
+  @ApiModelProperty(value = "联系途径")
   private String contactMethod;
+  @ApiModelProperty(value = "联系方式（具体的）")
   private String contactString;
+  @ApiModelProperty(value = "城市")
   private String city;
+  @ApiModelProperty(value = "省份")
   private String province;
+  @ApiModelProperty(value = "国家")
   private String country;
   @JsonIgnore
   private Collection<AppFindLoser> appFindLosersByOpenId;

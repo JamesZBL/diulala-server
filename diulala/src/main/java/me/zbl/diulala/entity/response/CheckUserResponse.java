@@ -16,18 +16,20 @@
  */
 package me.zbl.diulala.entity.response;
 
-import lombok.AllArgsConstructor;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.stereotype.Component;
 
 /**
  * @author JamesZBL
  * @date 2018-04-30
  */
+@ApiModel
 @Getter
 @Setter
 public class CheckUserResponse {
 
+  @ApiModelProperty(value = "查询的用户是否存在")
   private boolean exist;
 }

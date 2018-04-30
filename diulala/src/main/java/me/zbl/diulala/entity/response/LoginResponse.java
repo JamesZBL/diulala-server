@@ -16,6 +16,8 @@
  */
 package me.zbl.diulala.entity.response;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,10 +26,12 @@ import lombok.Setter;
  * @author JamesZBL
  * @date 2018-04-28
  */
+@ApiModel
 @Getter
 @Setter
 @AllArgsConstructor
 public class LoginResponse {
 
+  @ApiModelProperty(value = "用户在小程序平台上的 openId")
   private String userId;
 }

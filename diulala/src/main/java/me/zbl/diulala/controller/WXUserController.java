@@ -16,10 +16,7 @@
  */
 package me.zbl.diulala.controller;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.*;
 import me.zbl.controller.base.BaseController;
 import me.zbl.diulala.conf.WXProperties;
 import me.zbl.diulala.entity.persistence.AppUser;
@@ -88,6 +85,10 @@ public class WXUserController extends BaseController {
     return checkUserResponse;
   }
 
+  @ApiOperation(value = "获取用户信息")
+  @ApiImplicitParams(
+          @ApiImplicitParam(name = "userid", value = "小程序平台用户的 openid", required = true)
+  )
   @GetMapping("/w_getuser")
   public AppUser findWXUser(String userid) {
     return wrapData(userService.findUser(userid));

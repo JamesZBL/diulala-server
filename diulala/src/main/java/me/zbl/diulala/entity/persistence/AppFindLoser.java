@@ -16,8 +16,6 @@
  */
 package me.zbl.diulala.entity.persistence;
 
-import springfox.documentation.annotations.ApiIgnore;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -149,7 +147,7 @@ public class AppFindLoser {
   }
 
   @Basic
-  @Column(name = "gmt_created")
+  @Column(name = "gmt_created", insertable = false)
   public Timestamp getGmtCreated() {
     return gmtCreated;
   }
@@ -159,7 +157,7 @@ public class AppFindLoser {
   }
 
   @Basic
-  @Column(name = "gmt_modified")
+  @Column(name = "gmt_modified", insertable = false)
   public Timestamp getGmtModified() {
     return gmtModified;
   }

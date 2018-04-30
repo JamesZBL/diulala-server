@@ -147,7 +147,7 @@ public class AppFindLoser {
   }
 
   @Basic
-  @Column(name = "gmt_created", insertable = false)
+  @Column(name = "gmt_created", insertable = false, updatable = false)
   public Timestamp getGmtCreated() {
     return gmtCreated;
   }
@@ -157,7 +157,7 @@ public class AppFindLoser {
   }
 
   @Basic
-  @Column(name = "gmt_modified", insertable = false)
+  @Column(name = "gmt_modified", insertable = false, updatable = false)
   public Timestamp getGmtModified() {
     return gmtModified;
   }

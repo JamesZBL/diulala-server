@@ -16,6 +16,8 @@
  */
 package me.zbl.diulala.entity.persistence;
 
+import springfox.documentation.annotations.ApiIgnore;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -43,6 +45,7 @@ public class AppFindLoser {
 
   @Id
   @Column(name = "id")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   public Integer getId() {
     return id;
   }

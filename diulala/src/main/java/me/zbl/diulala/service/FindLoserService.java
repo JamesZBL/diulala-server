@@ -17,6 +17,7 @@
 package me.zbl.diulala.service;
 
 import me.zbl.diulala.entity.persistence.AppFindLoser;
+import me.zbl.exception.FailOperationException;
 
 import java.util.Collection;
 
@@ -32,4 +33,10 @@ public interface FindLoserService {
    * 根据唯一标识查找物品
    */
   Collection<AppFindLoser> findFindLoserByIdentification(String identification);
+
+  /**
+   * @param userid 用户 openId
+   * @param lost   捡到物品的信息
+   */
+  AppFindLoser submitCaughtInfo(String userid, AppFindLoser lost) throws FailOperationException;
 }

@@ -23,9 +23,12 @@ import io.swagger.annotations.ApiOperation;
 import me.zbl.controller.base.BaseController;
 import me.zbl.diulala.entity.persistence.AppFindLoser;
 import me.zbl.diulala.service.FindLoserService;
+import me.zbl.exception.FailOperationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.Collection;
 
@@ -35,7 +38,7 @@ import java.util.Collection;
  * @author JamesZBL
  * @date 2018-04-30
  */
-@Api(value = "待认领", tags = {"匹配由捡到者发布的信息"})
+@Api(value = "待认领", tags = {"失物招领"})
 @RestController
 public class CaughtAndFindController extends BaseController {
 
@@ -46,8 +49,25 @@ public class CaughtAndFindController extends BaseController {
   @ApiImplicitParams(
           @ApiImplicitParam(name = "identification", value = "唯一标识的内容，比如银行卡号", required = true)
   )
-  @GetMapping("/matchlose")
+  @GetMapping("/caught/match")
   public Collection<AppFindLoser> matchFindLoser(String identification) {
     return wrapData(findLoserService.findFindLoserByIdentification(identification));
+  }
+
+
+  @ApiOperation(value = "提交捡到物品的信息")
+  @ApiImplicitParams(value = {
+          @ApiImplicitParam(name = "userid", value = "捡到者 openId", required = true),
+          @ApiImplicitParam(name = "category", value = "物品分类", required = true),
+          @ApiImplicitParam(name = "name", value = "物品名称", required = true),
+          @ApiImplicitParam(name = "identification", value = "唯一标识", required = true),
+          @ApiImplicitParam(name = "longitude", value = "经度", required = true),
+          @ApiImplicitParam(name = "latitude", value = "纬度", required = true),
+          @ApiImplicitParam(name = "poi", value = "POI"),
+          @ApiImplicitParam(name = "description", value = "物品描述", required = true)
+  })
+  @PostMapping("/caught/submit")
+  public AppFindLoser findThing(String userid, @ApiIgnore AppFindLoser lost) throws FailOperationException {
+    return findLoserService.submitCaughtInfo(userid, lost);
   }
 }

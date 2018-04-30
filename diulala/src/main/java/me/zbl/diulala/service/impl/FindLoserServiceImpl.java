@@ -17,12 +17,17 @@
 package me.zbl.diulala.service.impl;
 
 import me.zbl.diulala.entity.persistence.AppFindLoser;
+import me.zbl.diulala.entity.persistence.AppUser;
 import me.zbl.diulala.repository.FindLoserRepository;
 import me.zbl.diulala.service.FindLoserService;
+import me.zbl.diulala.service.UserService;
+import me.zbl.exception.FailOperationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
+import java.util.Optional;
 
 /**
  * 找失主业务实现
@@ -36,8 +41,29 @@ public class FindLoserServiceImpl implements FindLoserService {
   @Autowired
   private FindLoserRepository findLoserRepository;
 
+  @Autowired
+  private UserService userService;
+
   @Override
   public Collection<AppFindLoser> findFindLoserByIdentification(String identification) {
     return findLoserRepository.findAppFindLosersByIdentification(identification);
+  }
+
+  @Override
+  @Transactional
+  public AppFindLoser submitCaughtInfo(String userid, AppFindLoser lost) throws FailOperationException {
+    Optional<AppUser> user = userService.findUser(userid);
+    if (!user.isPresent()) {
+      throw new IllegalArgumentException();
+    }
+    lost.setAppUserByCaughtUser(user.get());
+    AppFindLoser result = null;
+    try {
+      result = findLoserRepository.save(lost);
+    } catch (Exception e) {
+      e.printStackTrace();
+      throw new FailOperationException();
+    }
+    return result;
   }
 }

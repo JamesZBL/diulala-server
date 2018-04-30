@@ -16,7 +16,10 @@
  */
 package me.zbl.diulala.entity.persistence;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -24,7 +27,7 @@ import java.util.Objects;
  * @date 2018-04-30
  */
 @Entity
-@Table(name = "app_user", schema = "diulala")
+@Table(name = "app_user", schema = "diulala", catalog = "")
 public class AppUser {
 
   private String openId;
@@ -38,6 +41,8 @@ public class AppUser {
   private String city;
   private String province;
   private String country;
+  @JsonIgnore
+  private Collection<AppFindLoser> appFindLosersByOpenId;
 
   @Id
   @Column(name = "open_id")
@@ -50,7 +55,7 @@ public class AppUser {
   }
 
   @Basic
-  @Column(name = "nickName")
+  @Column(name = "nick_name")
   public String getNickName() {
     return nickName;
   }
@@ -60,7 +65,7 @@ public class AppUser {
   }
 
   @Basic
-  @Column(name = "unionId")
+  @Column(name = "union_id")
   public String getUnionId() {
     return unionId;
   }
@@ -70,7 +75,7 @@ public class AppUser {
   }
 
   @Basic
-  @Column(name = "avatarUrl")
+  @Column(name = "avatar_url")
   public String getAvatarUrl() {
     return avatarUrl;
   }
@@ -80,7 +85,7 @@ public class AppUser {
   }
 
   @Basic
-  @Column(name = "realName")
+  @Column(name = "real_name")
   public String getRealName() {
     return realName;
   }
@@ -100,7 +105,7 @@ public class AppUser {
   }
 
   @Basic
-  @Column(name = "contactMethod")
+  @Column(name = "contact_method")
   public String getContactMethod() {
     return contactMethod;
   }
@@ -110,7 +115,7 @@ public class AppUser {
   }
 
   @Basic
-  @Column(name = "contactString")
+  @Column(name = "contact_string")
   public String getContactString() {
     return contactString;
   }
@@ -153,23 +158,32 @@ public class AppUser {
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
-    AppUser tAppUser = (AppUser) o;
-    return Objects.equals(openId, tAppUser.openId) &&
-            Objects.equals(nickName, tAppUser.nickName) &&
-            Objects.equals(unionId, tAppUser.unionId) &&
-            Objects.equals(avatarUrl, tAppUser.avatarUrl) &&
-            Objects.equals(realName, tAppUser.realName) &&
-            Objects.equals(gender, tAppUser.gender) &&
-            Objects.equals(contactMethod, tAppUser.contactMethod) &&
-            Objects.equals(contactString, tAppUser.contactString) &&
-            Objects.equals(city, tAppUser.city) &&
-            Objects.equals(province, tAppUser.province) &&
-            Objects.equals(country, tAppUser.country);
+    AppUser appUser = (AppUser) o;
+    return Objects.equals(openId, appUser.openId) &&
+            Objects.equals(nickName, appUser.nickName) &&
+            Objects.equals(unionId, appUser.unionId) &&
+            Objects.equals(avatarUrl, appUser.avatarUrl) &&
+            Objects.equals(realName, appUser.realName) &&
+            Objects.equals(gender, appUser.gender) &&
+            Objects.equals(contactMethod, appUser.contactMethod) &&
+            Objects.equals(contactString, appUser.contactString) &&
+            Objects.equals(city, appUser.city) &&
+            Objects.equals(province, appUser.province) &&
+            Objects.equals(country, appUser.country);
   }
 
   @Override
   public int hashCode() {
 
     return Objects.hash(openId, nickName, unionId, avatarUrl, realName, gender, contactMethod, contactString, city, province, country);
+  }
+
+  @OneToMany(mappedBy = "appUserByCaughtUser")
+  public Collection<AppFindLoser> getAppFindLosersByOpenId() {
+    return appFindLosersByOpenId;
+  }
+
+  public void setAppFindLosersByOpenId(Collection<AppFindLoser> appFindLosersByOpenId) {
+    this.appFindLosersByOpenId = appFindLosersByOpenId;
   }
 }

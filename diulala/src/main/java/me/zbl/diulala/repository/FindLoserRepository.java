@@ -14,33 +14,25 @@
  * limitations under the License.
  *
  */
-package me.zbl.diulala.service;
+package me.zbl.diulala.repository;
 
-import me.zbl.diulala.entity.persistence.AppUser;
+import me.zbl.diulala.entity.persistence.AppFindLoser;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
+import java.util.Collection;
 
 /**
- * 用户服务
- *
  * @author JamesZBL
- * @date 2018-04-29
+ * @date 2018-04-30
  */
-public interface UserService {
+@Repository
+public interface FindLoserRepository extends CrudRepository<AppFindLoser, Integer> {
 
   /**
-   * 查询用户是否存在
+   * 根据唯一标识找物品
    *
-   * @param userid 微信平台 openId
+   * @param identification 唯一标识
    */
-  boolean existUser(String userid);
-
-  /**
-   * 根据 openId 查询用户
-   *
-   * @param userid openId
-   *
-   * @return AppUser
-   */
-  Optional<AppUser> findUser(String userid);
+  Collection<AppFindLoser> findAppFindLosersByIdentification(String identification);
 }

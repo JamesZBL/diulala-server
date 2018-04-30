@@ -17,8 +17,6 @@
 package me.zbl.controller.base;
 
 import me.zbl.exception.EmptyResultException;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 
 import java.util.Iterator;
 import java.util.Optional;
@@ -39,7 +37,7 @@ public class BaseController {
    *
    * @return 响应实体
    */
-  protected <T> ResponseEntity wrapData(T data) {
+  protected <T> T wrapData(T data) {
     // 结果为 null
     if (null == data) {
       throw new EmptyResultException();
@@ -55,6 +53,21 @@ public class BaseController {
         throw new EmptyResultException();
       }
     }
-    return new ResponseEntity<>(data, HttpStatus.OK);
+    return data;
+  }
+
+  /**
+   * 对数据实体进行包装
+   *
+   * @param data 数据实体
+   * @param <T>  数据类型
+   *
+   * @return 响应实体
+   */
+  protected <T> T wrapData(Optional<T> data) {
+    if (!data.isPresent()) {
+      throw new EmptyResultException();
+    }
+    return data.get();
   }
 }

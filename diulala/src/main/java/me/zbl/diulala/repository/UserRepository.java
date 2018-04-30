@@ -20,8 +20,6 @@ import me.zbl.diulala.entity.persistence.AppUser;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
-
 /**
  * @author JamesZBL
  * @date 2018-04-29
@@ -29,6 +27,5 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends CrudRepository<AppUser, String> {
 
-  @Override
-  Optional<AppUser> findById(String s);
+  AppUser findAppUserByOpenId(String userid);
 }

@@ -8,9 +8,12 @@
     <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
     <!-- SQL dialect -->
     <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+    <mapping class="me.zbl.diulala.entity.persistence.AppUser"/>
       <mapping class="me.zbl.diulala.entity.persistence.AppUser"/>
       <mapping class="me.zbl.diulala.entity.persistence.AppUser"/>
-      <mapping class="me.zbl.diulala.entity.persistence.AppUser"/>
+      <mapping class="me.zbl.diulala.entity.persistence.AppFindLoser"/>
+      <mapping class="me.zbl.diulala.entity.persistence.TAppFindLoser"/>
+      <mapping class="me.zbl.diulala.entity.persistence.TAppUser"/>
 
       <!-- DB schema will be updated if needed -->
     <!-- <property name="hbm2ddl.auto">update</property> -->

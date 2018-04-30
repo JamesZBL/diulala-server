@@ -20,7 +20,9 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import me.zbl.controller.base.BaseController;
 import me.zbl.diulala.conf.WXProperties;
+import me.zbl.diulala.entity.persistence.AppUser;
 import me.zbl.diulala.entity.response.ApiLoginResponse;
 import me.zbl.diulala.entity.response.CheckUserResponse;
 import me.zbl.diulala.entity.response.LoginResponse;
@@ -42,9 +44,9 @@ import java.util.Map;
  * @author JamesZBL
  * @date 2018-04-28
  */
-@Api(value = "小程序登录", tags = {"用户信息"})
+@Api(value = "小程序登录及用户信息", tags = {"用户信息"})
 @RestController
-public class LoginController {
+public class WXUserController extends BaseController {
 
   @Autowired
   private UserService userService;
@@ -84,5 +86,10 @@ public class LoginController {
     boolean exists = userService.existUser(userid);
     checkUserResponse.setExist(exists);
     return checkUserResponse;
+  }
+
+  @GetMapping("/w_getuser")
+  public AppUser findWXUser(String userid) {
+    return wrapData(userService.findUser(userid));
   }
 }

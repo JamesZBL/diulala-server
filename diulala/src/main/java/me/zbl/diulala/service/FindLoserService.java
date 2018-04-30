@@ -16,31 +16,20 @@
  */
 package me.zbl.diulala.service;
 
-import me.zbl.diulala.entity.persistence.AppUser;
+import me.zbl.diulala.entity.persistence.AppFindLoser;
 
-import java.util.Optional;
+import java.util.Collection;
 
 /**
- * 用户服务
+ * 捡到物品相关业务
  *
  * @author JamesZBL
- * @date 2018-04-29
+ * @date 2018-04-30
  */
-public interface UserService {
+public interface FindLoserService {
 
   /**
-   * 查询用户是否存在
-   *
-   * @param userid 微信平台 openId
+   * 根据唯一标识查找物品
    */
-  boolean existUser(String userid);
-
-  /**
-   * 根据 openId 查询用户
-   *
-   * @param userid openId
-   *
-   * @return AppUser
-   */
-  Optional<AppUser> findUser(String userid);
+  Collection<AppFindLoser> findFindLoserByIdentification(String identification);
 }

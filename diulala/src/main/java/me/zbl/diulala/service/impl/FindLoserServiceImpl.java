@@ -16,34 +16,28 @@
  */
 package me.zbl.diulala.service.impl;
 
-import me.zbl.diulala.entity.persistence.AppUser;
-import me.zbl.diulala.repository.UserRepository;
-import me.zbl.diulala.service.UserService;
+import me.zbl.diulala.entity.persistence.AppFindLoser;
+import me.zbl.diulala.repository.FindLoserRepository;
+import me.zbl.diulala.service.FindLoserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.Collection;
 
 /**
- * 用户服务实现
+ * 找失主业务实现
  *
  * @author JamesZBL
- * @date 2018-04-29
+ * @date 2018-04-30
  */
 @Service
-public class UserServiceImpl implements UserService {
+public class FindLoserServiceImpl implements FindLoserService {
 
   @Autowired
-  private UserRepository userRepo;
+  private FindLoserRepository findLoserRepository;
 
   @Override
-  public boolean existUser(String userid) {
-    Optional<AppUser> user = userRepo.findById(userid);
-    return user.isPresent();
-  }
-
-  @Override
-  public Optional<AppUser> findUser(String userid) {
-    return userRepo.findById(userid);
+  public Collection<AppFindLoser> findFindLoserByIdentification(String identification) {
+    return findLoserRepository.findAppFindLosersByIdentification(identification);
   }
 }

@@ -21,6 +21,7 @@ limitations under the License.
         <artifactId>diulala-parent</artifactId>
         <groupId>me.zbl</groupId>
         <version>0.1-snapshot</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -38,4 +39,26 @@ limitations under the License.
             <version>0.1-snapshot</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <finalName>diulala-web</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <fork>true</fork>
+                    <mainClass>me.zbl.Application</mainClass>
+                    <layout>ZIP</layout>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>

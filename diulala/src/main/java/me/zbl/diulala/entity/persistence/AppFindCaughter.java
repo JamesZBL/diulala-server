@@ -16,6 +16,9 @@
  */
 package me.zbl.diulala.entity.persistence;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -25,21 +28,33 @@ import java.util.Objects;
  * @author JamesZBL
  * @date 2018-05-01
  */
+@ApiModel
 @Entity
 @Table(name = "app_find_caughter", schema = "diulala", catalog = "")
 public class AppFindCaughter {
 
   private Integer id;
+  @ApiModelProperty(value = "物品分类")
   private String category;
+  @ApiModelProperty(value = "物品名称")
   private String name;
+  @ApiModelProperty(value = "唯一标识")
   private String identification;
+  @ApiModelProperty(value = "经度")
   private BigDecimal longitude;
+  @ApiModelProperty(value = "纬度")
   private BigDecimal latitude;
+  @ApiModelProperty(value = "POI")
   private String poi;
+  @ApiModelProperty(value = "描述")
   private String description;
+  @ApiModelProperty(value = "是否归还")
   private Byte finished;
+  @ApiModelProperty(value = "赏金")
   private BigDecimal money;
+  @ApiModelProperty(value = "提交时间")
   private Timestamp gmtCreated;
+  @ApiModelProperty(value = "最后修改时间")
   private Timestamp gmtModified;
   private AppUser appUserByLoseUser;
 

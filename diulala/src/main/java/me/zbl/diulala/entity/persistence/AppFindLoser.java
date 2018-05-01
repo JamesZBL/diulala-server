@@ -53,6 +53,8 @@ public class AppFindLoser {
   private String description;
   @ApiModelProperty(value = "是否归还")
   private Byte finished;
+  @ApiModelProperty(value = "问题")
+  private AppQuestion appQuestionByQuestion;
   @ApiModelProperty(value = "提交时间")
   private Timestamp gmtCreated;
   @ApiModelProperty(value = "最后修改时间")
@@ -191,5 +193,15 @@ public class AppFindLoser {
 
   public void setGmtModified(Timestamp gmtModified) {
     this.gmtModified = gmtModified;
+  }
+
+  @ManyToOne
+  @JoinColumn(name = "question")
+  public AppQuestion getAppQuestionByQuestion() {
+    return appQuestionByQuestion;
+  }
+
+  public void setAppQuestionByQuestion(AppQuestion appQuestionByQuestion) {
+    this.appQuestionByQuestion = appQuestionByQuestion;
   }
 }

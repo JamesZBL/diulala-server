@@ -16,31 +16,29 @@
  */
 package me.zbl.diulala.repository;
 
-import me.zbl.diulala.entity.persistence.AppFindLoser;
+import me.zbl.diulala.entity.persistence.AppFindCaughter;
 import me.zbl.diulala.entity.persistence.AppUser;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
 
 /**
  * @author JamesZBL
- * @date 2018-04-30
+ * @date 2018-05-01
  */
-@Repository
-public interface FindLoserRepository extends CrudRepository<AppFindLoser, Integer> {
+public interface FindCaughterRepository extends CrudRepository<AppFindCaughter, String> {
 
   /**
    * 根据唯一标识找物品
    *
    * @param identification 唯一标识
    */
-  Collection<AppFindLoser> findAppFindLosersByIdentificationAndFinished(String identification, Byte finished);
+  Collection<AppFindCaughter> findAppFindCaughtersByIdentificationAAndFinished(String identification, Byte finished);
 
   /**
    * 根据用户查询物品
    *
    * @param appUser 用户
    */
-  Collection<AppFindLoser> findAppFindLosersByAppUserByCaughtUser(AppUser appUser);
+  Collection<AppFindCaughter> findAppFindCaughtersByAppUserByLoseUser(AppUser appUser);
 }

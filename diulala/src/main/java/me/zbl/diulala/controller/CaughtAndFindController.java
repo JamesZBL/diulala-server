@@ -55,6 +55,15 @@ public class CaughtAndFindController extends BaseController {
     return wrapData(findLoserService.findFindLoserByIdentification(identification));
   }
 
+  @ApiOperation(value = "查询本用户提交的捡到的物品信息")
+  @ApiImplicitParams(
+          @ApiImplicitParam(name = "userid", value = "用户 openId", required = true)
+  )
+  @GetMapping("/caught/mysubmits")
+  public Collection<AppFindLoser> mySubmits(String userid) {
+    return wrapData(findLoserService.findFindLoserByUser(userid));
+  }
+
   @ApiOperation(value = "提交捡到物品的信息")
   @ApiImplicitParams(value = {
           @ApiImplicitParam(name = "userid", value = "捡到者 openId", required = true),
@@ -76,7 +85,7 @@ public class CaughtAndFindController extends BaseController {
           @ApiImplicitParam(name = "userid", value = "小程序平台用户的 openid", required = true),
           @ApiImplicitParam(name = "lostid", value = "丢失物品 id", required = true)
   })
-  @PutMapping("/caught/returned")
+  @GetMapping("/caught/returned")
   public AppFindLoser hasReturned(String userid, Integer lostid) throws FailOperationException {
     return findLoserService.hasReturned(userid, lostid);
   }

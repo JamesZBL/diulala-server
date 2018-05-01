@@ -35,6 +35,13 @@ public interface FindLoserService {
   Collection<AppFindLoser> findFindLoserByIdentification(String identification);
 
   /**
+   * 根据用户查找物品
+   *
+   * @param userId 用户 openId
+   */
+  Collection<AppFindLoser> findFindLoserByUser(String userId);
+
+  /**
    * @param userid 用户 openId
    * @param lost   捡到物品的信息
    */

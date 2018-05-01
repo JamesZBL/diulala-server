@@ -51,12 +51,17 @@ public class FindLoserServiceImpl implements FindLoserService {
   }
 
   @Override
+  public Collection<AppFindLoser> findFindLoserByUser(String userId) {
+    Optional<AppUser> user = userService.findUser(userId);
+    user.orElseThrow(IllegalAccessError::new);
+    return findLoserRepository.findAppFindLosersByAppUserByCaughtUser(user.get());
+  }
+
+  @Override
   @Transactional
   public AppFindLoser submitCaughtInfo(String userid, AppFindLoser lost) throws FailOperationException {
     Optional<AppUser> user = userService.findUser(userid);
-    if (!user.isPresent()) {
-      throw new IllegalArgumentException();
-    }
+    user.orElseThrow(IllegalAccessError::new);
     lost.setAppUserByCaughtUser(user.get());
     AppFindLoser result = null;
     try {
@@ -72,9 +77,7 @@ public class FindLoserServiceImpl implements FindLoserService {
   @Transactional
   public AppFindLoser hasReturned(String userId, Integer lostId) throws FailOperationException {
     Optional<AppFindLoser> find = findLoserRepository.findById(lostId);
-    if (!find.isPresent()) {
-      throw new EmptyResultException();
-    }
+    find.orElseThrow(EmptyResultException::new);
     AppFindLoser ori = find.get();
     if (!ori.getAppUserByCaughtUser().getOpenId().equals(userId)) {
       throw new IllegalArgumentException();

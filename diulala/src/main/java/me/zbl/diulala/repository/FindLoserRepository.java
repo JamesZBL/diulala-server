@@ -17,6 +17,7 @@
 package me.zbl.diulala.repository;
 
 import me.zbl.diulala.entity.persistence.AppFindLoser;
+import me.zbl.diulala.entity.persistence.AppUser;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -35,4 +36,11 @@ public interface FindLoserRepository extends CrudRepository<AppFindLoser, Intege
    * @param identification 唯一标识
    */
   Collection<AppFindLoser> findAppFindLosersByIdentificationAndFinished(String identification,Byte finished);
+
+  /**
+   * 根据用户查询物品
+   * @param appUser 用户
+   * @return
+   */
+  Collection<AppFindLoser> findAppFindLosersByAppUserByCaughtUser(AppUser appUser);
 }

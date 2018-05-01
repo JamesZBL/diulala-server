@@ -32,20 +32,20 @@ public interface FindCaughterService {
   /**
    * 根据唯一标识查找物品
    */
-  Collection<AppFindCaughter> findFindLoserByIdentification(String identification);
+  Collection<AppFindCaughter> findFindCaughterByIdentification(String identification);
 
   /**
    * 根据用户查找物品
    *
    * @param userId 用户 openId
    */
-  Collection<AppFindCaughter> findFindLoserByUser(String userId);
+  Collection<AppFindCaughter> findFindCaughterByUser(String userId);
 
   /**
    * @param userid 用户 openId
-   * @param lost   捡到物品的信息
+   * @param lost   丢失物品的信息
    */
-  AppFindCaughter submitCaughtInfo(String userid, AppFindCaughter lost) throws FailOperationException;
+  AppFindCaughter submitLoseInfo(String userid, AppFindCaughter lost) throws FailOperationException;
 
   /**
    * 已经找到物品，更新物品信息，更新后不会再被匹配到
@@ -53,5 +53,5 @@ public interface FindCaughterService {
    * @param userid 用户 openId
    * @param lostId 丢失物品 id
    */
-  AppFindCaughter hasReturned(String userid, Integer lostId) throws FailOperationException;
+  AppFindCaughter hasGot(String userid, Integer lostId) throws FailOperationException;
 }

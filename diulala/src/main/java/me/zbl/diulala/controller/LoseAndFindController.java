@@ -21,8 +21,8 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import me.zbl.controller.base.BaseController;
-import me.zbl.diulala.entity.persistence.AppFindLoser;
-import me.zbl.diulala.service.FindLoserService;
+import me.zbl.diulala.entity.persistence.AppFindCaughter;
+import me.zbl.diulala.service.FindCaughterService;
 import me.zbl.exception.FailOperationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,59 +34,60 @@ import springfox.documentation.annotations.ApiIgnore;
 import java.util.Collection;
 
 /**
- * 待认领的物品相关接口
+ * 丢失的物品相关接口
  *
  * @author JamesZBL
  * @date 2018-04-30
  */
-@Api(value = "待认领", tags = {"失物招领"})
+@Api(value = "丢失物品", tags = {"寻物启事"})
 @RestController
-public class CaughtAndFindController extends BaseController {
+public class LoseAndFindController extends BaseController {
 
   @Autowired
-  private FindLoserService findLoserService;
+  private FindCaughterService findCaughterService;
 
-  @ApiOperation(value = "丢失者通过唯一标识匹配由捡到者发布的信息")
+  @ApiOperation(value = "捡到者通过唯一标识匹配由丢失者发布的信息")
   @ApiImplicitParams(
           @ApiImplicitParam(name = "identification", value = "唯一标识的内容，比如银行卡号", required = true)
   )
-  @GetMapping("/caught/match")
-  public Collection<AppFindLoser> matchFindLoser(String identification) {
-    return wrapData(findLoserService.findFindLoserByIdentification(identification));
+  @GetMapping("/lose/match")
+  public Collection<AppFindCaughter> matchFindCaughter(String identification) {
+    return wrapData(findCaughterService.findFindCaughterByIdentification(identification));
   }
 
-  @ApiOperation(value = "查询本用户提交的捡到的物品信息")
+  @ApiOperation(value = "查询本用户提交的丢失的物品信息")
   @ApiImplicitParams(
           @ApiImplicitParam(name = "userid", value = "用户 openId", required = true)
   )
-  @GetMapping("/caught/mysubmits")
-  public Collection<AppFindLoser> mySubmits(String userid) {
-    return wrapData(findLoserService.findFindLoserByUser(userid));
+  @GetMapping("/lose/mysubmits")
+  public Collection<AppFindCaughter> mySubmits(String userid) {
+    return wrapData(findCaughterService.findFindCaughterByUser(userid));
   }
 
-  @ApiOperation(value = "提交捡到物品的信息")
+  @ApiOperation(value = "提交丢失物品的信息")
   @ApiImplicitParams(value = {
-          @ApiImplicitParam(name = "userid", value = "捡到者 openId", required = true),
+          @ApiImplicitParam(name = "userid", value = "丢失者 openId", required = true),
           @ApiImplicitParam(name = "category", value = "物品分类", required = true),
           @ApiImplicitParam(name = "name", value = "物品名称", required = true),
           @ApiImplicitParam(name = "identification", value = "唯一标识", required = true),
-          @ApiImplicitParam(name = "longitude", value = "经度", required = true),
-          @ApiImplicitParam(name = "latitude", value = "纬度", required = true),
+          @ApiImplicitParam(name = "longitude", value = "经度"),
+          @ApiImplicitParam(name = "latitude", value = "纬度"),
           @ApiImplicitParam(name = "poi", value = "POI"),
-          @ApiImplicitParam(name = "description", value = "物品描述", required = true)
+          @ApiImplicitParam(name = "description", value = "物品描述", required = true),
+          @ApiImplicitParam(name = "money", value = "赏金")
   })
-  @PostMapping("/caught/submit")
-  public AppFindLoser findThing(String userid, @ApiIgnore AppFindLoser got) throws FailOperationException {
-    return findLoserService.submitCaughtInfo(userid, got);
+  @PostMapping("/lose/submit")
+  public AppFindCaughter loseThing(String userid, @ApiIgnore AppFindCaughter lost) throws FailOperationException {
+    return findCaughterService.submitLoseInfo(userid, lost);
   }
 
-  @ApiOperation(value = "更新物品的状态为 “已归还” ")
+  @ApiOperation(value = "更新物品的状态为 “已收到” ")
   @ApiImplicitParams(value = {
           @ApiImplicitParam(name = "userid", value = "小程序平台用户的 openid", required = true),
           @ApiImplicitParam(name = "lostid", value = "丢失物品 id", required = true)
   })
-  @PutMapping("/caught/returned")
-  public AppFindLoser hasReturned(String userid, Integer lostid) throws FailOperationException {
-    return findLoserService.hasReturned(userid, lostid);
+  @PutMapping("/lose/got")
+  public AppFindCaughter hasReturned(String userid, Integer lostid) throws FailOperationException {
+    return findCaughterService.hasGot(userid, lostid);
   }
 }

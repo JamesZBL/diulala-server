@@ -22,7 +22,9 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import me.zbl.controller.base.BaseController;
 import me.zbl.diulala.entity.persistence.AppFindLoser;
+import me.zbl.diulala.entity.response.CheckAnswerResponse;
 import me.zbl.diulala.service.FindLoserService;
+import me.zbl.diulala.service.QuestionService;
 import me.zbl.exception.FailOperationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,6 +44,9 @@ import java.util.Collection;
 @Api(value = "待认领", tags = {"失物招领"})
 @RestController
 public class CaughtAndFindController extends BaseController {
+
+  @Autowired
+  private QuestionService questionService;
 
   @Autowired
   private FindLoserService findLoserService;
@@ -88,5 +93,14 @@ public class CaughtAndFindController extends BaseController {
   @PutMapping("/caught/returned")
   public AppFindLoser hasReturned(String userid, Integer lostid) throws FailOperationException {
     return findLoserService.hasReturned(userid, lostid);
+  }
+
+  @ApiOperation(value = "检查回答是否正确")
+  @ApiImplicitParams(value = {
+          @ApiImplicitParam(name = "questionid", value = "问题 id", required = true),
+          @ApiImplicitParam(name = "answer", value = "用户的回答", required = true)
+  })
+  public CheckAnswerResponse answerRight(Integer questionid, String answer) {
+    return new CheckAnswerResponse(questionService.checkAnswer(questionid, answer));
   }
 }

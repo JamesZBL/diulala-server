@@ -59,7 +59,7 @@ public class WXUserController extends BaseController {
   @Autowired
   private RestTemplate restTemplate;
 
-  @ApiOperation(value = "通过 js_code 换取 openid 及 session_key")
+  @ApiOperation(value = "用户登录，以 js_code 换取用户的 openId")
   @ApiImplicitParams(
           @ApiImplicitParam(name = "code", value = "wx.login 返回的临时凭证", required = true)
   )

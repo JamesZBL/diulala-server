@@ -25,6 +25,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.util.Optional;
+
 
 /**
  * 数据异常处理
@@ -43,8 +45,9 @@ public class ResultExceptionHandler {
    */
   @ResponseStatus(value = HttpStatus.NOT_FOUND)
   @ExceptionHandler(value = EmptyResultException.class)
-  public MessageEntity handleResultEmptyException() {
-    return new MessageEntity(MSG_EMPTY_RESULT);
+  public MessageEntity handleResultEmptyException(Exception ex) {
+    Optional<String> em = Optional.ofNullable(ex.getMessage());
+    return R.fail(em.orElse(MSG_EMPTY_RESULT));
   }
 
   /**
@@ -52,8 +55,9 @@ public class ResultExceptionHandler {
    */
   @ResponseStatus(value = HttpStatus.NOT_FOUND)
   @ExceptionHandler(value = BindException.class)
-  public MessageEntity handleBindException() {
-    return new MessageEntity(MSG_BIND_ERROR);
+  public MessageEntity handleBindException(Exception ex) {
+    Optional<String> em = Optional.ofNullable(ex.getMessage());
+    return R.fail(em.orElse(MSG_BIND_ERROR));
   }
 
   /**
@@ -61,7 +65,7 @@ public class ResultExceptionHandler {
    */
   @ResponseStatus(value = HttpStatus.NOT_FOUND)
   @ExceptionHandler(value = FailOperationException.class)
-  public MessageEntity handleFailOperationException() {
-    return R.fail();
+  public MessageEntity handleFailOperationException(Exception ex) {
+    return R.fail(ex);
   }
 }

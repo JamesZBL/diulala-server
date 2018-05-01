@@ -1,0 +1,66 @@
+<RestClientRequest>
+  <option name="biscuits">
+    <list />
+  </option>
+  <option name="httpMethod" value="POST" />
+  <option name="urlBase" value="http://localhost:8084" />
+  <option name="urlPath" value="/lose/submit" />
+  <option name="headers">
+    <list>
+      <KeyValuePair>
+        <option name="key" value="Accept" />
+        <option name="value" value="*/*" />
+      </KeyValuePair>
+      <KeyValuePair>
+        <option name="key" value="Cache-Control" />
+        <option name="value" value="no-cache" />
+      </KeyValuePair>
+    </list>
+  </option>
+  <option name="parameters">
+    <list>
+      <KeyValuePair>
+        <option name="key" value="userid" />
+        <option name="value" value="11111" />
+      </KeyValuePair>
+      <KeyValuePair>
+        <option name="key" value="category" />
+        <option name="value" value="df" />
+      </KeyValuePair>
+      <KeyValuePair>
+        <option name="key" value="name" />
+        <option name="value" value="324" />
+      </KeyValuePair>
+      <KeyValuePair>
+        <option name="key" value="identification" />
+        <option name="value" value="e4" />
+      </KeyValuePair>
+      <KeyValuePair>
+        <option name="key" value="longitude" />
+        <option name="value" value="34" />
+      </KeyValuePair>
+      <KeyValuePair>
+        <option name="key" value="latitude" />
+        <option name="value" value="32" />
+      </KeyValuePair>
+      <KeyValuePair>
+        <option name="key" value="poi" />
+        <option name="value" value="343" />
+      </KeyValuePair>
+      <KeyValuePair>
+        <option name="key" value="description" />
+        <option name="value" value="342" />
+      </KeyValuePair>
+      <KeyValuePair>
+        <option name="key" value="money" />
+        <option name="value" value="521" />
+      </KeyValuePair>
+    </list>
+  </option>
+  <option name="parametersEnabled" value="true" />
+  <option name="haveTextToSend" value="false" />
+  <option name="haveFileToSend" value="false" />
+  <option name="isFileUpload" value="false" />
+  <option name="textToSend" value="" />
+  <option name="filesToSend" value="" />
+</RestClientRequest>

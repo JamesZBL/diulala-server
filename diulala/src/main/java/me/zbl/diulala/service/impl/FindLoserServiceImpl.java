@@ -17,8 +17,10 @@
 package me.zbl.diulala.service.impl;
 
 import me.zbl.diulala.entity.persistence.AppFindLoser;
+import me.zbl.diulala.entity.persistence.AppQuestion;
 import me.zbl.diulala.entity.persistence.AppUser;
 import me.zbl.diulala.repository.FindLoserRepository;
+import me.zbl.diulala.repository.QuestionRepository;
 import me.zbl.diulala.service.FindLoserService;
 import me.zbl.diulala.service.UserService;
 import me.zbl.exception.EmptyResultException;
@@ -40,6 +42,9 @@ import java.util.Optional;
 public class FindLoserServiceImpl implements FindLoserService {
 
   @Autowired
+  private QuestionRepository questionRepository;
+
+  @Autowired
   private FindLoserRepository findLoserRepository;
 
   @Autowired
@@ -59,10 +64,18 @@ public class FindLoserServiceImpl implements FindLoserService {
 
   @Override
   @Transactional
-  public AppFindLoser submitCaughtInfo(String userid, AppFindLoser lost) throws FailOperationException {
+  public AppFindLoser submitCaughtInfo(String userid, AppFindLoser lost, AppQuestion question) throws FailOperationException {
     Optional<AppUser> user = userService.findUser(userid);
     user.orElseThrow(() -> new IllegalArgumentException("用户不存在"));
     lost.setAppUserByCaughtUser(user.get());
+    AppQuestion save = null;
+    try {
+      save = questionRepository.save(question);
+    } catch (Exception e) {
+      e.printStackTrace();
+      throw new FailOperationException();
+    }
+    lost.setAppQuestionByQuestion(save);
     AppFindLoser result = null;
     try {
       result = findLoserRepository.save(lost);

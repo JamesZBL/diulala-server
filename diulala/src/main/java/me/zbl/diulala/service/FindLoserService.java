@@ -17,6 +17,7 @@
 package me.zbl.diulala.service;
 
 import me.zbl.diulala.entity.persistence.AppFindLoser;
+import me.zbl.diulala.entity.persistence.AppQuestion;
 import me.zbl.exception.FailOperationException;
 
 import java.util.Collection;
@@ -45,7 +46,7 @@ public interface FindLoserService {
    * @param userid 用户 openId
    * @param lost   捡到物品的信息
    */
-  AppFindLoser submitCaughtInfo(String userid, AppFindLoser lost) throws FailOperationException;
+  AppFindLoser submitCaughtInfo(String userid, AppFindLoser lost, AppQuestion question) throws FailOperationException;
 
   /**
    * 已经找到失主，更新物品信息，更新后不会再被匹配到

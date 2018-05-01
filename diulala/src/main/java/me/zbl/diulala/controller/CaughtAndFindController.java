@@ -22,6 +22,7 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import me.zbl.controller.base.BaseController;
 import me.zbl.diulala.entity.persistence.AppFindLoser;
+import me.zbl.diulala.entity.persistence.AppQuestion;
 import me.zbl.diulala.entity.response.CheckAnswerResponse;
 import me.zbl.diulala.service.FindLoserService;
 import me.zbl.diulala.service.QuestionService;
@@ -78,11 +79,13 @@ public class CaughtAndFindController extends BaseController {
           @ApiImplicitParam(name = "longitude", value = "经度", required = true),
           @ApiImplicitParam(name = "latitude", value = "纬度", required = true),
           @ApiImplicitParam(name = "poi", value = "POI"),
-          @ApiImplicitParam(name = "description", value = "物品描述", required = true)
+          @ApiImplicitParam(name = "description", value = "物品描述", required = true),
+          @ApiImplicitParam(name = "question", value = "问题的题目", required = true),
+          @ApiImplicitParam(name = "answer", value = "问题的答案", required = true)
   })
   @PostMapping("/caught/submit")
-  public AppFindLoser findThing(String userid, @ApiIgnore AppFindLoser got) throws FailOperationException {
-    return findLoserService.submitCaughtInfo(userid, got);
+  public AppFindLoser findThing(String userid, @ApiIgnore AppFindLoser got, @ApiIgnore AppQuestion question) throws FailOperationException {
+    return findLoserService.submitCaughtInfo(userid, got,question);
   }
 
   @ApiOperation(value = "更新物品的状态为 “已归还” ")

@@ -19,6 +19,7 @@ package me.zbl.diulala.repository;
 import me.zbl.diulala.entity.persistence.AppFindCaughter;
 import me.zbl.diulala.entity.persistence.AppUser;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
 
@@ -26,7 +27,8 @@ import java.util.Collection;
  * @author JamesZBL
  * @date 2018-05-01
  */
-public interface FindCaughterRepository extends CrudRepository<AppFindCaughter, String> {
+@Repository
+public interface FindCaughterRepository extends CrudRepository<AppFindCaughter, Integer> {
 
   /**
    * 根据唯一标识找物品

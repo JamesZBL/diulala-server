@@ -14,7 +14,7 @@
       <mapping class="me.zbl.diulala.entity.persistence.AppFindLoser"/>
       <mapping class="me.zbl.diulala.entity.persistence.AppFindCaughter"/>
       <mapping class="me.zbl.diulala.entity.persistence.AppFindCaughter"/>
-      <mapping class="me.zbl.diulala.entity.persistence.TAppUser"/>
+      <mapping class="me.zbl.diulala.entity.persistence.AppUser"/>
 
       <!-- DB schema will be updated if needed -->
     <!-- <property name="hbm2ddl.auto">update</property> -->

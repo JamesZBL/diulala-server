@@ -35,7 +35,7 @@ public interface FindCaughterRepository extends CrudRepository<AppFindCaughter, 
    *
    * @param identification 唯一标识
    */
-  Collection<AppFindCaughter> findAppFindCaughtersByIdentificationAAndFinished(String identification, Byte finished);
+  Collection<AppFindCaughter> findAppFindCaughtersByIdentificationAndFinished(String identification, Byte finished);
 
   /**
    * 根据用户查询物品

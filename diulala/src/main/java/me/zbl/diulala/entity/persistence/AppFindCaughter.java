@@ -124,7 +124,7 @@ public class AppFindCaughter {
   }
 
   @Basic
-  @Column(name = "finished",insertable = false)
+  @Column(name = "finished", insertable = false)
   public Byte getFinished() {
     return finished;
   }

@@ -124,7 +124,7 @@ public class AppFindCaughter {
   }
 
   @Basic
-  @Column(name = "finished")
+  @Column(name = "finished",insertable = false)
   public Byte getFinished() {
     return finished;
   }
@@ -144,7 +144,7 @@ public class AppFindCaughter {
   }
 
   @Basic
-  @Column(name = "gmt_created")
+  @Column(name = "gmt_created", insertable = false, updatable = false)
   public Timestamp getGmtCreated() {
     return gmtCreated;
   }
@@ -154,7 +154,7 @@ public class AppFindCaughter {
   }
 
   @Basic
-  @Column(name = "gmt_modified")
+  @Column(name = "gmt_modified", insertable = false, updatable = false)
   public Timestamp getGmtModified() {
     return gmtModified;
   }

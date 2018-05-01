@@ -3,7 +3,7 @@
     <list />
   </option>
   <option name="httpMethod" value="POST" />
-  <option name="urlBase" value="http://dll.letec.top" />
+  <option name="urlBase" value="http://localhost:8084" />
   <option name="urlPath" value="/caught/submit" />
   <option name="headers">
     <list>
@@ -50,6 +50,14 @@
       <KeyValuePair>
         <option name="key" value="description" />
         <option name="value" value="342" />
+      </KeyValuePair>
+      <KeyValuePair>
+        <option name="key" value="question" />
+        <option name="value" value="1234324" />
+      </KeyValuePair>
+      <KeyValuePair>
+        <option name="key" value="answer" />
+        <option name="value" value="43284" />
       </KeyValuePair>
     </list>
   </option>

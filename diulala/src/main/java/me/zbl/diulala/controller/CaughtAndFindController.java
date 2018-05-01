@@ -103,6 +103,7 @@ public class CaughtAndFindController extends BaseController {
           @ApiImplicitParam(name = "questionid", value = "问题 id", required = true),
           @ApiImplicitParam(name = "answer", value = "用户的回答", required = true)
   })
+  @GetMapping("/caught/checkanswer")
   public CheckAnswerResponse answerRight(Integer questionid, String answer) {
     return new CheckAnswerResponse(questionService.checkAnswer(questionid, answer));
   }

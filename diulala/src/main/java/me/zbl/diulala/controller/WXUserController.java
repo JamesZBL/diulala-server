@@ -138,8 +138,7 @@ public class WXUserController extends BaseController {
                   @ApiImplicitParam(name = "country", value = "国家", required = true)}
   )
   @PutMapping("/user/update")
-  public MessageEntity updateUserInfo(@ApiIgnore @RequestBody AppUser appUser) throws FailOperationException {
-    AppUser result = userService.updateUserInfo(appUser);
-    return R.success();
+  public AppUser updateUserInfo(@ApiIgnore @RequestBody AppUser appUser) throws FailOperationException {
+    return userService.updateUserInfo(appUser);
   }
 }

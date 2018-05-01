@@ -57,6 +57,8 @@ public class AppUser {
   private String country;
   @JsonIgnore
   private Collection<AppFindLoser> appFindLosersByOpenId;
+  @JsonIgnore
+  private Collection<AppFindCaughter> appFindCaughtersByOpenId;
 
   @Id
   @Column(name = "open_id")
@@ -199,5 +201,14 @@ public class AppUser {
 
   public void setAppFindLosersByOpenId(Collection<AppFindLoser> appFindLosersByOpenId) {
     this.appFindLosersByOpenId = appFindLosersByOpenId;
+  }
+
+  @OneToMany(mappedBy = "appUserByLoseUser")
+  public Collection<AppFindCaughter> getAppFindCaughtersByOpenId() {
+    return appFindCaughtersByOpenId;
+  }
+
+  public void setAppFindCaughtersByOpenId(Collection<AppFindCaughter> appFindCaughtersByOpenId) {
+    this.appFindCaughtersByOpenId = appFindCaughtersByOpenId;
   }
 }

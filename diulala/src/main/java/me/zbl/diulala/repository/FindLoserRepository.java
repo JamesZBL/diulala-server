@@ -34,5 +34,5 @@ public interface FindLoserRepository extends CrudRepository<AppFindLoser, Intege
    *
    * @param identification 唯一标识
    */
-  Collection<AppFindLoser> findAppFindLosersByIdentification(String identification);
+  Collection<AppFindLoser> findAppFindLosersByIdentificationAndFinished(String identification,Byte finished);
 }

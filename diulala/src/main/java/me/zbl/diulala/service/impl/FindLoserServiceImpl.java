@@ -21,6 +21,7 @@ import me.zbl.diulala.entity.persistence.AppUser;
 import me.zbl.diulala.repository.FindLoserRepository;
 import me.zbl.diulala.service.FindLoserService;
 import me.zbl.diulala.service.UserService;
+import me.zbl.exception.EmptyResultException;
 import me.zbl.exception.FailOperationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,7 +47,7 @@ public class FindLoserServiceImpl implements FindLoserService {
 
   @Override
   public Collection<AppFindLoser> findFindLoserByIdentification(String identification) {
-    return findLoserRepository.findAppFindLosersByIdentification(identification);
+    return findLoserRepository.findAppFindLosersByIdentificationAndFinished(identification, (byte) 0);
   }
 
   @Override
@@ -65,5 +66,27 @@ public class FindLoserServiceImpl implements FindLoserService {
       throw new FailOperationException();
     }
     return result;
+  }
+
+  @Override
+  @Transactional
+  public AppFindLoser hasReturned(String userId, Integer lostId) throws FailOperationException {
+    Optional<AppFindLoser> find = findLoserRepository.findById(lostId);
+    if (!find.isPresent()) {
+      throw new EmptyResultException();
+    }
+    AppFindLoser ori = find.get();
+    if (!ori.getAppUserByCaughtUser().getOpenId().equals(userId)) {
+      throw new IllegalArgumentException();
+    }
+    ori.setFinished((byte) 1);
+    AppFindLoser save = null;
+    try {
+      save = findLoserRepository.save(ori);
+    } catch (Exception e) {
+      e.printStackTrace();
+      throw new FailOperationException();
+    }
+    return save;
   }
 }

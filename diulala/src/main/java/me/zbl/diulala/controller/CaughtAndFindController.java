@@ -27,13 +27,14 @@ import me.zbl.exception.FailOperationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.Collection;
 
 /**
- * 待认领的物品查询
+ * 待认领的物品相关接口
  *
  * @author JamesZBL
  * @date 2018-04-30
@@ -54,7 +55,6 @@ public class CaughtAndFindController extends BaseController {
     return wrapData(findLoserService.findFindLoserByIdentification(identification));
   }
 
-
   @ApiOperation(value = "提交捡到物品的信息")
   @ApiImplicitParams(value = {
           @ApiImplicitParam(name = "userid", value = "捡到者 openId", required = true),
@@ -69,5 +69,15 @@ public class CaughtAndFindController extends BaseController {
   @PostMapping("/caught/submit")
   public AppFindLoser findThing(String userid, @ApiIgnore AppFindLoser lost) throws FailOperationException {
     return findLoserService.submitCaughtInfo(userid, lost);
+  }
+
+  @ApiOperation(value = "更新物品的状态为 “已归还” ")
+  @ApiImplicitParams(value = {
+          @ApiImplicitParam(name = "userid", value = "小程序平台用户的 openid", required = true),
+          @ApiImplicitParam(name = "lostid", value = "丢失物品 id", required = true)
+  })
+  @PutMapping("/caught/returned")
+  public AppFindLoser hasReturned(String userid, Integer lostid) throws FailOperationException {
+    return findLoserService.hasReturned(userid, lostid);
   }
 }

@@ -39,4 +39,12 @@ public interface FindLoserService {
    * @param lost   捡到物品的信息
    */
   AppFindLoser submitCaughtInfo(String userid, AppFindLoser lost) throws FailOperationException;
+
+  /**
+   * 已经找到失主，更新物品信息，更新后不会再被匹配到
+   *
+   * @param userid 用户 openId
+   * @param lostId 捡到物品 id
+   */
+  AppFindLoser hasReturned(String userid, Integer lostId) throws FailOperationException;
 }

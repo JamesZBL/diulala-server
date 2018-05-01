@@ -23,6 +23,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
+import java.util.Optional;
+
 /**
  * 请求映射异常处理
  *
@@ -41,7 +43,8 @@ public class HandlerExceptionHandler {
   @ResponseStatus(value = HttpStatus.NOT_FOUND)
   @ExceptionHandler(value = NoHandlerFoundException.class)
   public MessageEntity handleNoHandlerFoundException(NoHandlerFoundException ex) {
-    return new MessageEntity(MSG_NOT_FOUNT);
+    Optional<String> em = Optional.ofNullable(ex.getMessage());
+    return R.fail(em.orElse(MSG_NOT_FOUNT));
   }
 
   /**
@@ -49,7 +52,8 @@ public class HandlerExceptionHandler {
    */
   @ResponseStatus(value = HttpStatus.BAD_REQUEST)
   @ExceptionHandler(value = IllegalArgumentException.class)
-  public MessageEntity handleIllegalArugumentException(IllegalArgumentException ex) {
-    return new MessageEntity(MSG_ILLEGAL_ARGUMENT);
+  public MessageEntity handleIllegalArgumentException(IllegalArgumentException ex) {
+    Optional<String> em = Optional.ofNullable(ex.getMessage());
+    return R.fail(em.orElse(MSG_ILLEGAL_ARGUMENT));
   }
 }

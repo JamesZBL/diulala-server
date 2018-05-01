@@ -24,4 +24,22 @@ package me.zbl.exception;
  */
 public class FailOperationException extends Exception {
 
+  public FailOperationException() {
+  }
+
+  public FailOperationException(String message) {
+    super(message);
+  }
+
+  public FailOperationException(String message, Throwable cause) {
+    super(message, cause);
+  }
+
+  public FailOperationException(Throwable cause) {
+    super(cause);
+  }
+
+  public FailOperationException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    super(message, cause, enableSuppression, writableStackTrace);
+  }
 }

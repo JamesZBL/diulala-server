@@ -54,6 +54,14 @@ public class R {
 
   /**
    * 操作失败
+   */
+  public static MessageEntity fail(Exception e) {
+    String es = e.getMessage();
+    return new MessageEntity(es != null ? es : MSG_FAILED);
+  }
+
+  /**
+   * 操作失败
    *
    * @param msg 自定义消息
    */

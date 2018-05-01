@@ -24,4 +24,18 @@ package me.zbl.exception;
  */
 public class EmptyResultException extends IllegalStateException {
 
+  public EmptyResultException() {
+  }
+
+  public EmptyResultException(String s) {
+    super(s);
+  }
+
+  public EmptyResultException(String message, Throwable cause) {
+    super(message, cause);
+  }
+
+  public EmptyResultException(Throwable cause) {
+    super(cause);
+  }
 }

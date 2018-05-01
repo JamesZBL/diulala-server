@@ -25,6 +25,8 @@ import java.sql.Timestamp;
 import java.util.Objects;
 
 /**
+ * 失物招领信息
+ *
  * @author JamesZBL
  * @date 2018-04-30
  */
@@ -49,6 +51,8 @@ public class AppFindLoser {
   private String poi;
   @ApiModelProperty(value = "描述")
   private String description;
+  @ApiModelProperty(value = "是否归还")
+  private Byte finished;
   @ApiModelProperty(value = "提交时间")
   private Timestamp gmtCreated;
   @ApiModelProperty(value = "最后修改时间")
@@ -147,6 +151,16 @@ public class AppFindLoser {
 
   public void setPoi(String poi) {
     this.poi = poi;
+  }
+
+  @Basic
+  @Column(name = "finished", insertable = false)
+  public Byte getFinished() {
+    return finished;
+  }
+
+  public void setFinished(Byte finished) {
+    this.finished = finished;
   }
 
   @Basic

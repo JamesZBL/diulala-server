@@ -27,17 +27,18 @@ import me.zbl.diulala.entity.persistence.AppUser;
 import me.zbl.diulala.entity.response.ApiLoginResponse;
 import me.zbl.diulala.entity.response.CheckUserResponse;
 import me.zbl.diulala.entity.response.LoginResponse;
+import me.zbl.diulala.exception.AuthFailedException;
 import me.zbl.diulala.service.UserService;
 import me.zbl.entity.response.MessageEntity;
 import me.zbl.exception.FailOperationException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * 小程序登录
@@ -63,16 +64,17 @@ public class WXUserController extends BaseController {
           @ApiImplicitParam(name = "code", value = "wx.login 返回的临时凭证", required = true)
   )
   @GetMapping("/user/login")
-  public LoginResponse login(String code) {
+  public LoginResponse login(String code) throws AuthFailedException {
     Map<String, String> params = new HashMap<>();
     params.put("appid", wxProperties.getAppId());
     params.put("secret", wxProperties.getAppSecret());
     params.put("js_code", code);
     params.put("grant_type", "authorization_code");
-    ResponseEntity<ApiLoginResponse> response = restTemplate.getForEntity(
+    ApiLoginResponse response = restTemplate.getForObject(
             wxProperties.getUrlCode2Session(), ApiLoginResponse.class, params);
-    String openid = response.getBody().getOpenid();
-    return new LoginResponse(openid);
+    Optional<String> openId = Optional.ofNullable(response.getOpenid());
+    openId.orElseThrow(AuthFailedException::new);
+    return new LoginResponse(openId.get());
   }
 
   @ApiOperation(value = "通过 openid 校验用户是否完善了个人信息")

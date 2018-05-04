@@ -14,21 +14,27 @@
  * limitations under the License.
  *
  */
-package me.zbl.diulala.entity.response;
+package me.zbl.auth;
 
 import lombok.Getter;
 import lombok.Setter;
-
-import java.io.Serializable;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.lang.NonNull;
 
 /**
+ * Token 相关配置
+ *
  * @author JamesZBL
- * @date 2018-04-28
+ * @email 1146556298@qq.com
+ * @date 2018-05-04
  */
+@Configuration
+@ConfigurationProperties(prefix = "token")
 @Getter
 @Setter
-public class ApiLoginResponse implements Serializable {
+public class TokenProperties {
 
-  private String openid;
-  private String session_key;
+  @NonNull
+  private int tokenTimeout;
 }

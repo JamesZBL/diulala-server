@@ -14,21 +14,15 @@
  * limitations under the License.
  *
  */
-package me.zbl.diulala.entity.response;
-
-import lombok.Getter;
-import lombok.Setter;
-
-import java.io.Serializable;
+package me.zbl.auth.annotation;
 
 /**
+ * 接口需鉴权注解
+ *
  * @author JamesZBL
- * @date 2018-04-28
+ * @email 1146556298@qq.com
+ * @date 2018-05-04
  */
-@Getter
-@Setter
-public class ApiLoginResponse implements Serializable {
+public @interface CurrentUser {
 
-  private String openid;
-  private String session_key;
 }

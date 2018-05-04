@@ -16,7 +16,6 @@
  */
 package me.zbl.controller.base;
 
-import me.zbl.entity.response.MessageEntity;
 import me.zbl.exception.EmptyResultException;
 
 import java.util.Iterator;

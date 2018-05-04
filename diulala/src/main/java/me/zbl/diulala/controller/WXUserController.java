@@ -22,6 +22,7 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import me.zbl.controller.base.BaseController;
 import me.zbl.controller.base.R;
+import me.zbl.diulala.auth.WXTokenManager;
 import me.zbl.diulala.conf.WXProperties;
 import me.zbl.diulala.entity.persistence.AppUser;
 import me.zbl.diulala.entity.response.ApiLoginResponse;
@@ -51,6 +52,9 @@ import java.util.Optional;
 public class WXUserController extends BaseController {
 
   @Autowired
+  WXTokenManager tokenManager;
+
+  @Autowired
   private UserService userService;
 
   @Autowired
@@ -72,9 +76,13 @@ public class WXUserController extends BaseController {
     params.put("grant_type", "authorization_code");
     ApiLoginResponse response = restTemplate.getForObject(
             wxProperties.getUrlCode2Session(), ApiLoginResponse.class, params);
+    //    获取 openId
     Optional<String> openId = Optional.ofNullable(response.getOpenid());
+    Optional<String> sessionKey = Optional.ofNullable(response.getSession_key());
     openId.orElseThrow(AuthFailedException::new);
-    return new LoginResponse(openId.get());
+    //    生成 token
+    String token = tokenManager.createToken(response);
+    return new LoginResponse(openId.get(), sessionKey.get(), token);
   }
 
   @ApiOperation(value = "通过 openid 校验用户是否完善了个人信息")

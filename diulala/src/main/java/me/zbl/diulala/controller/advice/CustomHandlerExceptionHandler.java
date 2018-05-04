@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.util.Optional;
+
 /**
  * 异常处理
  *
@@ -40,7 +42,8 @@ public class CustomHandlerExceptionHandler {
    */
   @ResponseStatus(HttpStatus.UNAUTHORIZED)
   @ExceptionHandler(value = AuthFailedException.class)
-  public MessageEntity handleAuthException() {
-    return R.fail("登录失败");
+  public MessageEntity handleAuthException(AuthFailedException ex) {
+    Optional<String> msg = Optional.ofNullable(ex.getMessage());
+    return R.fail(msg.orElse(ERROR_MSG));
   }
 }

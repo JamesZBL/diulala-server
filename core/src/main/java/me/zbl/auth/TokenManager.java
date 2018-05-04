@@ -68,4 +68,11 @@ public interface TokenManager<TK, U> {
    * @param token token
    */
   void destroyToken(TK token);
+
+  /**
+   * 生成 特定类型的 token
+   *
+   * @return token
+   */
+  TK produceToken();
 }

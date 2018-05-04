@@ -29,7 +29,7 @@ import java.util.concurrent.TimeUnit;
  * @email 1146556298@qq.com
  * @date 2018-05-04
  */
-public class RedisTokenManager<TK, U> implements TokenManager<TK, U> {
+public abstract class RedisTokenManager<TK, U> implements TokenManager<TK, U> {
 
   private final RedisTemplate<TK, U> redisTemplate;
 
@@ -43,7 +43,7 @@ public class RedisTokenManager<TK, U> implements TokenManager<TK, U> {
   @Override
   public TK createToken(U info) {
     //    生成 token 字符串
-    TK key = redisTemplate.randomKey();
+    TK key = produceToken();
     //    将 token 和用户信息绑定
     redisTemplate.boundValueOps(key).set(info);
     return key;

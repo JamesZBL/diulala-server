@@ -14,22 +14,17 @@
  * limitations under the License.
  *
  */
-package me.zbl.auth.annotation;
-
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+package me.zbl.diulala.auth;
 
 /**
- * 接口需鉴权注解
+ * 小程序鉴权相关常量
  *
  * @author JamesZBL
  * @email 1146556298@qq.com
  * @date 2018-05-04
  */
-@Target({ElementType.METHOD})
-@Retention(RetentionPolicy.RUNTIME)
-public @interface CurrentUser {
+public interface WXAuthConstants {
 
+  String HEADER_TOKEN = "w_token";
+  String PARAM_USERID = "userid";
 }

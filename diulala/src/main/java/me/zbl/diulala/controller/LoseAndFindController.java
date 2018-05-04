@@ -20,6 +20,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import me.zbl.auth.annotation.CurrentUser;
 import me.zbl.controller.base.BaseController;
 import me.zbl.diulala.entity.persistence.AppFindCaughter;
 import me.zbl.diulala.service.FindCaughterService;
@@ -59,6 +60,7 @@ public class LoseAndFindController extends BaseController {
   @ApiImplicitParams(
           @ApiImplicitParam(name = "userid", value = "用户 openId", required = true)
   )
+  @CurrentUser
   @GetMapping("/lose/mysubmits")
   public Collection<AppFindCaughter> mySubmits(String userid) {
     return wrapData(findCaughterService.findFindCaughterByUser(userid));

@@ -24,4 +24,10 @@ package me.zbl.diulala.exception;
  */
 public class AuthFailedException extends Exception {
 
+  public AuthFailedException() {
+  }
+
+  public AuthFailedException(String message) {
+    super(message);
+  }
 }

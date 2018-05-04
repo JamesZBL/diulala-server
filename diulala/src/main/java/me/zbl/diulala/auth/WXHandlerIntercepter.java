@@ -17,12 +17,18 @@
 package me.zbl.diulala.auth;
 
 import me.zbl.auth.annotation.CurrentUser;
+import me.zbl.diulala.entity.response.ApiLoginResponse;
+import me.zbl.diulala.exception.AuthFailedException;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Optional;
 
 /**
  * 小程序鉴权拦截器
@@ -32,7 +38,11 @@ import javax.servlet.http.HttpServletResponse;
  * @email 1146556298@qq.com
  * @date 2018-05-04
  */
+@Component
 public class WXHandlerIntercepter implements HandlerInterceptor {
+
+  @Autowired
+  private WXTokenManager tokenManager;
 
   @Override
   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -46,7 +56,22 @@ public class WXHandlerIntercepter implements HandlerInterceptor {
     //    是否需要用户用户认证
     boolean onlyCurrentUser = method.hasMethodAnnotation(CurrentUser.class);
     if (onlyCurrentUser) {
-
+      String tokenParam = request.getHeader(WXAuthConstants.HEADER_TOKEN);
+      if (StringUtils.isEmpty(tokenParam)) {
+        //        请求头中未包含 token，抛出异常
+        throw new AuthFailedException("未获取到认证信息");
+      }
+      if (!tokenManager.hasToken(tokenParam)) {
+        throw new AuthFailedException("认证过期，请重新登录");
+      }
+      Optional<ApiLoginResponse> info = tokenManager.getTokenInfo(tokenParam);
+      info.orElseThrow(AuthFailedException::new);
+      //      判断请求用户是否为当前登录用户
+      ApiLoginResponse get = info.get();
+      String userid = request.getParameter(WXAuthConstants.PARAM_USERID);
+      if (!get.getOpenid().equals(userid)) {
+        throw new AuthFailedException("无权操作");
+      }
     }
     return true;
   }

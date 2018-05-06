@@ -48,12 +48,13 @@ public class LoseAndFindController extends BaseController {
   private FindCaughterService findCaughterService;
 
   @ApiOperation(value = "捡到者通过唯一标识匹配由丢失者发布的信息")
-  @ApiImplicitParams(
+  @ApiImplicitParams(value = {
+          @ApiImplicitParam(name = "category", value = "物品分类", required = true),
           @ApiImplicitParam(name = "identification", value = "唯一标识的内容，比如银行卡号", required = true)
-  )
+  })
   @GetMapping("/lose/match")
-  public Collection<AppFindCaughter> matchFindCaughter(String identification) {
-    return wrapData(findCaughterService.findFindCaughterByIdentification(identification));
+  public Collection<AppFindCaughter> matchFindCaughter(String category, String identification) {
+    return wrapData(findCaughterService.findFindCaughterByCategoryAndIdentification(category, identification));
   }
 
   @ApiOperation(value = "查询本用户提交的丢失的物品信息")

@@ -54,12 +54,13 @@ public class CaughtAndFindController extends BaseController {
   private FindLoserService findLoserService;
 
   @ApiOperation(value = "丢失者通过唯一标识匹配由捡到者发布的信息")
-  @ApiImplicitParams(
+  @ApiImplicitParams(value = {
+          @ApiImplicitParam(name = "category", value = "物品分类", required = true),
           @ApiImplicitParam(name = "identification", value = "唯一标识的内容，比如银行卡号", required = true)
-  )
+  })
   @GetMapping("/caught/match")
-  public Collection<AppFindLoser> matchFindLoser(String identification) {
-    return wrapData(findLoserService.findFindLoserByIdentification(identification));
+  public Collection<AppFindLoser> matchFindLoser(String category, String identification) {
+    return wrapData(findLoserService.findFindLoserByCategoryAndIdentification(category, identification));
   }
 
   @ApiOperation(value = "查询本用户提交的捡到的物品信息")
@@ -87,7 +88,7 @@ public class CaughtAndFindController extends BaseController {
   })
   @PostMapping("/caught/submit")
   public AppFindLoser findThing(String userid, @ApiIgnore AppFindLoser got, @ApiIgnore AppQuestion question) throws FailOperationException {
-    return findLoserService.submitCaughtInfo(userid, got,question);
+    return findLoserService.submitCaughtInfo(userid, got, question);
   }
 
   @ApiOperation(value = "更新物品的状态为 “已归还” ")

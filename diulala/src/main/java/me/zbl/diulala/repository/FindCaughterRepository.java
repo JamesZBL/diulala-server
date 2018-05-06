@@ -38,6 +38,14 @@ public interface FindCaughterRepository extends CrudRepository<AppFindCaughter, 
   Collection<AppFindCaughter> findAppFindCaughtersByIdentificationAndFinished(String identification, Byte finished);
 
   /**
+   * 根据物品分类和唯一标识查找物品
+   *
+   * @param category       物品分类
+   * @param identification 唯一标识
+   */
+  Collection<AppFindCaughter> findAppFindCaughtersByCategoryAndIdentificationAndFinished(String category, String identification, Byte finished);
+
+  /**
    * 根据用户查询物品
    *
    * @param appUser 用户

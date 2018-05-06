@@ -27,6 +27,10 @@
         <option name="key" value="identification" />
         <option name="value" value="150101102" />
       </KeyValuePair>
+      <KeyValuePair>
+        <option name="key" value="category" />
+        <option name="value" value="饭卡" />
+      </KeyValuePair>
     </list>
   </option>
   <option name="parametersEnabled" value="true" />

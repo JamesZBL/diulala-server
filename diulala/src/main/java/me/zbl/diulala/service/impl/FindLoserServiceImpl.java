@@ -56,6 +56,11 @@ public class FindLoserServiceImpl implements FindLoserService {
   }
 
   @Override
+  public Collection<AppFindLoser> findFindLoserByCategoryAndIdentification(String category, String identification) {
+    return findLoserRepository.findAppFindLosersByCategoryAndIdentificationAndFinished(category, identification, (byte) 0);
+  }
+
+  @Override
   public Collection<AppFindLoser> findFindLoserByUser(String userId) {
     Optional<AppUser> user = userService.findUser(userId);
     user.orElseThrow(() -> new IllegalArgumentException("用户不存在"));

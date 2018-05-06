@@ -46,7 +46,17 @@ public class FindCaughterServiceImpl implements FindCaughterService {
 
   @Override
   public Collection<AppFindCaughter> findFindCaughterByIdentification(String identification) {
-    return findCaughterRepository.findAppFindCaughtersByIdentificationAndFinished(identification, (byte) 0);
+    return findCaughterRepository.
+            findAppFindCaughtersByIdentificationAndFinished(identification, (byte) 0);
+  }
+
+  @Override
+  public Collection<AppFindCaughter> findFindCaughterByCategoryAndIdentification(
+          String category, String identification) {
+    return findCaughterRepository.findAppFindCaughtersByCategoryAndIdentificationAndFinished(
+            category,
+            identification, (byte) 0
+    );
   }
 
   @Override
@@ -57,7 +67,8 @@ public class FindCaughterServiceImpl implements FindCaughterService {
   }
 
   @Override
-  public AppFindCaughter submitLoseInfo(String userid, AppFindCaughter lost) throws FailOperationException {
+  public AppFindCaughter submitLoseInfo(
+          String userid, AppFindCaughter lost) throws FailOperationException {
     Optional<AppUser> user = userService.findUser(userid);
     user.orElseThrow(() -> new IllegalArgumentException("用户不存在"));
     lost.setAppUserByLoseUser(user.get());

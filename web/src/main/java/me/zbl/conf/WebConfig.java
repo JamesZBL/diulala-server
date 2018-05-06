@@ -32,6 +32,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
+  @Autowired
+  private DebugProperties debugProperties;
+
   @Override
   public void addResourceHandlers(ResourceHandlerRegistry registry) {
     //    registry.addResourceHandler("/swagger-ui.html");
@@ -42,6 +45,8 @@ public class WebConfig implements WebMvcConfigurer {
 
   @Override
   public void addInterceptors(InterceptorRegistry registry) {
-    registry.addInterceptor(wxHandlerIntercepter);
+    if (!debugProperties.isDebug()) {
+      registry.addInterceptor(wxHandlerIntercepter);
+    }
   }
 }

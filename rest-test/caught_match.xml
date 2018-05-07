@@ -25,7 +25,11 @@
     <list>
       <KeyValuePair>
         <option name="key" value="identification" />
-        <option name="value" value="333" />
+        <option name="value" value="e4" />
+      </KeyValuePair>
+      <KeyValuePair>
+        <option name="key" value="category" />
+        <option name="value" value="df" />
       </KeyValuePair>
     </list>
   </option>

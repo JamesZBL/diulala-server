@@ -55,7 +55,8 @@ public class FindCaughterServiceImpl implements FindCaughterService {
           String category, String identification) {
     return findCaughterRepository.findAppFindCaughtersByCategoryAndIdentificationAndFinished(
             category,
-            identification, (byte) 0
+            identification,
+            (byte) 0
     );
   }
 

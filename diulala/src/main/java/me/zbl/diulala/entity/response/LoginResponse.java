@@ -34,8 +34,6 @@ public class LoginResponse {
 
   @ApiModelProperty(value = "用户在小程序平台上的 openId")
   private String userId;
-  @ApiModelProperty(value = "小程序 API 返回的会话密钥")
-  private String sessionKey;
   @ApiModelProperty(value = "丢啦啦 API 返回的会话密钥")
   private String token;
 }

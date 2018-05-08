@@ -76,13 +76,14 @@ public class WXUserController extends BaseController {
     params.put("grant_type", "authorization_code");
     ApiLoginResponse response = restTemplate.getForObject(
             wxProperties.getUrlCode2Session(), ApiLoginResponse.class, params);
+    //    ResponseEntity<String> forEntity = restTemplate.
+    //            getForEntity(wxProperties.getUrlCode2Session(), String.class, params);
     //    获取 openId
     Optional<String> openId = Optional.ofNullable(response.getOpenid());
-    Optional<String> sessionKey = Optional.ofNullable(response.getSession_key());
     openId.orElseThrow(AuthFailedException::new);
     //    生成 token
     String token = tokenManager.createToken(response);
-    return new LoginResponse(openId.get(), sessionKey.get(), token);
+    return new LoginResponse(openId.get(), token);
   }
 
   @ApiOperation(value = "通过 openid 校验用户是否完善了个人信息")

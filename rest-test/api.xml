@@ -1,0 +1,50 @@
+<RestClientRequest>
+  <option name="biscuits">
+    <list />
+  </option>
+  <option name="httpMethod" value="GET" />
+  <option name="urlBase" value="https://api.weixin.qq.com" />
+  <option name="urlPath" value="/sns/jscode2session" />
+  <option name="headers">
+    <list>
+      <KeyValuePair>
+        <option name="key" value="Accept" />
+        <option name="value" value="*/*" />
+      </KeyValuePair>
+      <KeyValuePair>
+        <option name="key" value="Cache-Control" />
+        <option name="value" value="no-cache" />
+      </KeyValuePair>
+      <KeyValuePair>
+        <option name="key" value="Authorization" />
+        <option name="value" value="Basic MTox" />
+      </KeyValuePair>
+    </list>
+  </option>
+  <option name="parameters">
+    <list>
+      <KeyValuePair>
+        <option name="key" value="appid" />
+        <option name="value" value="wx698220e7667a01e3" />
+      </KeyValuePair>
+      <KeyValuePair>
+        <option name="key" value="secret" />
+        <option name="value" value="882d28c93d94c8b7a5450fd0d45a052f" />
+      </KeyValuePair>
+      <KeyValuePair>
+        <option name="key" value="js_code" />
+        <option name="value" value="" />
+      </KeyValuePair>
+      <KeyValuePair>
+        <option name="key" value="grant_type" />
+        <option name="value" value="authorization_code" />
+      </KeyValuePair>
+    </list>
+  </option>
+  <option name="parametersEnabled" value="true" />
+  <option name="haveTextToSend" value="false" />
+  <option name="haveFileToSend" value="false" />
+  <option name="isFileUpload" value="false" />
+  <option name="textToSend" value="" />
+  <option name="filesToSend" value="" />
+</RestClientRequest>

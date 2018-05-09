@@ -34,9 +34,6 @@ import java.util.UUID;
 @Configuration
 public class WXTokenManager extends RedisTokenManager<String, ApiLoginResponse> {
 
-  @Resource(name = "wxRedisTemplate")
-  private RedisTemplate<String, ApiLoginResponse> redisTemplate;
-
   public WXTokenManager(RedisTemplate<String, ApiLoginResponse> redisTemplate) {
     super(redisTemplate);
   }

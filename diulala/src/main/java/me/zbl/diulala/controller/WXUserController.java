@@ -23,6 +23,7 @@ import io.swagger.annotations.ApiOperation;
 import me.zbl.controller.base.BaseController;
 import me.zbl.controller.base.R;
 import me.zbl.diulala.auth.WXTokenManager;
+import me.zbl.diulala.client.WXApi;
 import me.zbl.diulala.conf.WXProperties;
 import me.zbl.diulala.entity.persistence.AppUser;
 import me.zbl.diulala.entity.response.ApiLoginResponse;
@@ -37,8 +38,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import springfox.documentation.annotations.ApiIgnore;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -52,6 +51,9 @@ import java.util.Optional;
 public class WXUserController extends BaseController {
 
   @Autowired
+  WXApi wxApi;
+
+  @Autowired
   WXTokenManager tokenManager;
 
   @Autowired
@@ -60,24 +62,14 @@ public class WXUserController extends BaseController {
   @Autowired
   private WXProperties wxProperties;
 
-  @Autowired
-  private RestTemplate restTemplate;
-
   @ApiOperation(value = "用户登录，以 js_code 换取用户的 openId")
   @ApiImplicitParams(
           @ApiImplicitParam(name = "code", value = "wx.login 返回的临时凭证", required = true)
   )
   @GetMapping("/user/login")
   public LoginResponse login(String code) throws AuthFailedException {
-    Map<String, String> params = new HashMap<>();
-    params.put("appid", wxProperties.getAppId());
-    params.put("secret", wxProperties.getAppSecret());
-    params.put("js_code", code);
-    params.put("grant_type", "authorization_code");
-    ApiLoginResponse response = restTemplate.getForObject(
-            wxProperties.getUrlCode2Session(), ApiLoginResponse.class, params);
-    //    ResponseEntity<String> forEntity = restTemplate.
-    //            getForEntity(wxProperties.getUrlCode2Session(), String.class, params);
+    ApiLoginResponse response = wxApi.login(wxProperties.getAppId(),
+            wxProperties.getAppSecret(), code, "authorization_code");
     //    获取 openId
     Optional<String> openId = Optional.ofNullable(response.getOpenid());
     openId.orElseThrow(AuthFailedException::new);

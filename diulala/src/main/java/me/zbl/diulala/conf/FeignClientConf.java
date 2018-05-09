@@ -19,7 +19,7 @@ package me.zbl.diulala.conf;
 import feign.Feign;
 import feign.gson.GsonDecoder;
 import me.zbl.diulala.client.WXApi;
-import org.springframework.boot.autoconfigure.AutoConfigureOrder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -33,13 +33,13 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class FeignClientConf {
 
-  @AutoConfigureOrder
+  @Autowired
   WXProperties wxProperties;
 
   @Bean(name = "wxApi")
   WXApi wxApi() {
-    return Feign.builder()
-            .decoder(new GsonDecoder())
-            .target(WXApi.class, wxProperties.getUrlBase());
+    return Feign.builder().
+            decoder(new GsonDecoder()).
+            target(WXApi.class, wxProperties.getUrlBase());
   }
 }

@@ -16,6 +16,7 @@
  */
 package me.zbl.diulala.entity.response;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,6 +28,7 @@ import java.io.Serializable;
  */
 @Getter
 @Setter
+@AllArgsConstructor
 public class ApiLoginResponse implements Serializable {
 
   private String openid;

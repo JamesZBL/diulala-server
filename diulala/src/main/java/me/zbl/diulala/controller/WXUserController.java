@@ -37,6 +37,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -67,13 +68,15 @@ public class WXUserController extends BaseController {
   )
   @GetMapping("/user/login")
   public LoginResponse login(String code) throws AuthFailedException {
-    ApiLoginResponse response = wxApi.login(wxProperties.getAppId(),
+    Map<String, String> response = wxApi.loginForMap(wxProperties.getAppId(),
             wxProperties.getAppSecret(), code, "authorization_code");
     //    获取 openId
-    Optional<String> openId = Optional.ofNullable(response.getOpenid());
-    openId.orElseThrow(AuthFailedException::new);
+    Optional<String> openId = Optional.ofNullable(response.get("openid"));
+    Optional<String> sessionKey = Optional.ofNullable(response.get("session_key"));
+    openId.orElseThrow(() -> new AuthFailedException(response.toString()));
     //    生成 token
-    String token = tokenManager.createToken(response);
+    ApiLoginResponse responseObj = new ApiLoginResponse(openId.get(), sessionKey.get());
+    String token = tokenManager.createToken(responseObj);
     return new LoginResponse(openId.get(), token);
   }
 

@@ -20,6 +20,8 @@ import feign.Param;
 import feign.RequestLine;
 import me.zbl.diulala.entity.response.ApiLoginResponse;
 
+import java.util.Map;
+
 /**
  * 微信 API
  *
@@ -37,6 +39,20 @@ public interface WXApi {
                   "grant_type={grant_type}"
   )
   ApiLoginResponse login(
+          @Param("appid") String appid,
+          @Param("secret") String secret,
+          @Param("js_code") String code,
+          @Param("grant_type") String grantType
+  );
+
+  @RequestLine(
+          "GET /sns/jscode2session?" +
+                  "appid={appid}&" +
+                  "secret={secret}&" +
+                  "js_code={js_code}&" +
+                  "grant_type={grant_type}"
+  )
+  Map<String, String> loginForMap(
           @Param("appid") String appid,
           @Param("secret") String secret,
           @Param("js_code") String code,

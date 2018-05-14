@@ -205,7 +205,7 @@ public class AppFindCaughter {
   }
 
   @ManyToOne
-  @JoinColumn(name = "lose_user", referencedColumnName = "open_id", nullable = false)
+  @JoinColumn(name = "lose_user")
   public AppUser getAppUserByLoseUser() {
     return appUserByLoseUser;
   }

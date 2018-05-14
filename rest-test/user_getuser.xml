@@ -4,7 +4,7 @@
   </option>
   <option name="httpMethod" value="GET" />
   <option name="urlBase" value="http://localhost:8084" />
-  <option name="urlPath" value="/lose/mysubmits" />
+  <option name="urlPath" value="/user/getuser" />
   <option name="headers">
     <list>
       <KeyValuePair>
@@ -16,8 +16,8 @@
         <option name="value" value="no-cache" />
       </KeyValuePair>
       <KeyValuePair>
-        <option name="key" value="token" />
-        <option name="value" value="6c1c69fb-55b0-43e0-957c-451fe2dde2b7" />
+        <option name="key" value="Authorization" />
+        <option name="value" value="Basic MTox" />
       </KeyValuePair>
     </list>
   </option>
@@ -25,7 +25,7 @@
     <list>
       <KeyValuePair>
         <option name="key" value="userid" />
-        <option name="value" value="12345678" />
+        <option name="value" value="453253245" />
       </KeyValuePair>
     </list>
   </option>

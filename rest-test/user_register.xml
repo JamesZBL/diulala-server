@@ -1,0 +1,70 @@
+<RestClientRequest>
+  <option name="biscuits">
+    <list />
+  </option>
+  <option name="httpMethod" value="POST" />
+  <option name="urlBase" value="http://localhost:8084" />
+  <option name="urlPath" value="/user/register" />
+  <option name="headers">
+    <list>
+      <KeyValuePair>
+        <option name="key" value="Accept" />
+        <option name="value" value="*/*" />
+      </KeyValuePair>
+      <KeyValuePair>
+        <option name="key" value="Cache-Control" />
+        <option name="value" value="no-cache" />
+      </KeyValuePair>
+      <KeyValuePair>
+        <option name="key" value="Authorization" />
+        <option name="value" value="Basic MTox" />
+      </KeyValuePair>
+    </list>
+  </option>
+  <option name="parameters">
+    <list>
+      <KeyValuePair>
+        <option name="key" value="openId" />
+        <option name="value" value="obW4u5X02ODKnP2nMEk7_nWYoZp4" />
+      </KeyValuePair>
+      <KeyValuePair>
+        <option name="key" value="nickName" />
+        <option name="value" value="aaa" />
+      </KeyValuePair>
+      <KeyValuePair>
+        <option name="key" value="avatarUrl" />
+        <option name="value" value="aaa" />
+      </KeyValuePair>
+      <KeyValuePair>
+        <option name="key" value="gender" />
+        <option name="value" value="1" />
+      </KeyValuePair>
+      <KeyValuePair>
+        <option name="key" value="contactMethod" />
+        <option name="value" value="aaa" />
+      </KeyValuePair>
+      <KeyValuePair>
+        <option name="key" value="contactString" />
+        <option name="value" value="123" />
+      </KeyValuePair>
+      <KeyValuePair>
+        <option name="key" value="city" />
+        <option name="value" value="aaa" />
+      </KeyValuePair>
+      <KeyValuePair>
+        <option name="key" value="province" />
+        <option name="value" value="aaa" />
+      </KeyValuePair>
+      <KeyValuePair>
+        <option name="key" value="country" />
+        <option name="value" value="aaa" />
+      </KeyValuePair>
+    </list>
+  </option>
+  <option name="parametersEnabled" value="true" />
+  <option name="haveTextToSend" value="false" />
+  <option name="haveFileToSend" value="false" />
+  <option name="isFileUpload" value="false" />
+  <option name="textToSend" value="" />
+  <option name="filesToSend" value="" />
+</RestClientRequest>

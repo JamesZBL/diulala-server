@@ -56,7 +56,7 @@ public class ResultExceptionHandler {
   @ResponseStatus(value = HttpStatus.NOT_FOUND)
   @ExceptionHandler(value = BindException.class)
   public MessageEntity handleBindException(Exception ex) {
-    return R.fail(MSG_BIND_ERROR );
+    return R.fail(MSG_BIND_ERROR);
   }
 
   /**

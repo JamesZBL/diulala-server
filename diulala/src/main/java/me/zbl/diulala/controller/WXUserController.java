@@ -21,7 +21,6 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import me.zbl.controller.base.BaseController;
-import me.zbl.controller.base.R;
 import me.zbl.diulala.auth.WXTokenManager;
 import me.zbl.diulala.client.WXApi;
 import me.zbl.diulala.conf.WXProperties;
@@ -31,12 +30,14 @@ import me.zbl.diulala.entity.response.CheckUserResponse;
 import me.zbl.diulala.entity.response.LoginResponse;
 import me.zbl.diulala.exception.AuthFailedException;
 import me.zbl.diulala.service.UserService;
-import me.zbl.entity.response.MessageEntity;
 import me.zbl.exception.FailOperationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindException;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
+import javax.validation.Valid;
 import java.util.Map;
 import java.util.Optional;
 
@@ -120,7 +121,9 @@ public class WXUserController extends BaseController {
                   @ApiImplicitParam(name = "country", value = "国家", required = true)}
   )
   @PostMapping("/user/register")
-  public AppUser fillUserInfo(@ApiIgnore AppUser appUser) throws FailOperationException {
+  public AppUser fillUserInfo(@ApiIgnore @Valid AppUser appUser, BindingResult result) throws FailOperationException, BindException {
+    if(result.hasErrors())
+      throw new BindException(result);
     return userService.fullFillUserInfo(appUser);
   }
 

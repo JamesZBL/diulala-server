@@ -21,6 +21,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Collection;
 import java.util.Objects;
 
@@ -33,26 +34,34 @@ import java.util.Objects;
 @Table(name = "app_user", schema = "diulala", catalog = "")
 public class AppUser {
 
+  @NotEmpty(message = "")
   @ApiModelProperty(value = "用户在小程序平台的 openId")
   private String openId;
+  @NotEmpty(message = "")
   @ApiModelProperty(value = "用户昵称")
   private String nickName;
   @ApiModelProperty(value = "用户在本小程序的唯一标识")
   private String unionId;
+  @NotEmpty(message = "")
   @ApiModelProperty(value = "头像 URL")
   private String avatarUrl;
   @ApiModelProperty(value = "真实姓名")
   private String realName;
   @ApiModelProperty(value = "性别")
   private Byte gender;
+  @NotEmpty(message = "")
   @ApiModelProperty(value = "联系途径")
   private String contactMethod;
+  @NotEmpty(message = "")
   @ApiModelProperty(value = "联系方式（具体的）")
   private String contactString;
+  @NotEmpty(message = "")
   @ApiModelProperty(value = "城市")
   private String city;
+  @NotEmpty(message = "")
   @ApiModelProperty(value = "省份")
   private String province;
+  @NotEmpty(message = "")
   @ApiModelProperty(value = "国家")
   private String country;
   @JsonIgnore

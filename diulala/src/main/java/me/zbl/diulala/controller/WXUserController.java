@@ -120,9 +120,8 @@ public class WXUserController extends BaseController {
                   @ApiImplicitParam(name = "country", value = "国家", required = true)}
   )
   @PostMapping("/user/register")
-  public MessageEntity fillUserInfo(@ApiIgnore AppUser appUser) throws FailOperationException {
-    AppUser result = userService.fullFillUserInfo(appUser);
-    return R.success();
+  public AppUser fillUserInfo(@ApiIgnore AppUser appUser) throws FailOperationException {
+    return userService.fullFillUserInfo(appUser);
   }
 
   @ApiOperation(value = "修改用户个人信息")

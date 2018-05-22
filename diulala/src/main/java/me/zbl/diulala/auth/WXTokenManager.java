@@ -21,7 +21,6 @@ import me.zbl.diulala.entity.response.ApiLoginResponse;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.RedisTemplate;
 
-import javax.annotation.Resource;
 import java.util.UUID;
 
 /**

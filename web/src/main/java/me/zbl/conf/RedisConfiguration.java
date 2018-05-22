@@ -17,7 +17,6 @@
 package me.zbl.conf;
 
 import me.zbl.auth.TokenEntity;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -33,11 +32,8 @@ import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer
 @Configuration
 public class RedisConfiguration {
 
-  @Autowired
-  private RedisConnectionFactory factory;
-
   @Bean(name = "tokenRedisTemplate")
-  RedisTemplate<Integer, TokenEntity> setupRedisTemplate() {
+  RedisTemplate<Integer, TokenEntity> redisTemplate(RedisConnectionFactory factory) {
     RedisTemplate<Integer, TokenEntity> objectObjectRedisTemplate = new RedisTemplate<>();
     objectObjectRedisTemplate.setConnectionFactory(factory);
     objectObjectRedisTemplate.setKeySerializer(new JdkSerializationRedisSerializer());

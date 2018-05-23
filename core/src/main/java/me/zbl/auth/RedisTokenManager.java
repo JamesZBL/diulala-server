@@ -45,7 +45,7 @@ public abstract class RedisTokenManager<TK, U> implements TokenManager<TK, U> {
     //    生成 token 字符串
     TK key = produceToken();
     //    将 token 和用户信息绑定
-    redisTemplate.boundValueOps(key).set(info);
+    redisTemplate.boundValueOps(key).set(info,tokenProperties.getTokenTimeout(),TimeUnit.SECONDS);
     return key;
   }
 

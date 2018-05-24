@@ -39,6 +39,6 @@ public class WXTokenManager extends RedisTokenManager<String, ApiLoginResponse> 
 
   @Override
   public String produceToken() {
-    return UUID.randomUUID().toString();
+    return UUID.randomUUID().toString().replace("-", "");
   }
 }

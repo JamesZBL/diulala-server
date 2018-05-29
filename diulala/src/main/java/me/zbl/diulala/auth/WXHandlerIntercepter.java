@@ -72,6 +72,8 @@ public class WXHandlerIntercepter implements HandlerInterceptor {
       if (!get.getOpenid().equals(userid)) {
         throw new AuthFailedException("无权操作");
       }
+      //      认证成功，token 续期
+      tokenManager.flushToken(tokenParam);
     }
     return true;
   }

@@ -16,12 +16,20 @@
  */
 package me.zbl.conf;
 
+import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 import me.zbl.diulala.auth.WXHandlerIntercepter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.http.converter.xml.MappingJackson2XmlHttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.text.SimpleDateFormat;
+import java.util.List;
 
 /**
  * Web 配置
@@ -35,6 +43,9 @@ public class WebConfig implements WebMvcConfigurer {
   @Autowired
   private DebugProperties debugProperties;
 
+  /**
+   * 资源处理器配置
+   */
   @Override
   public void addResourceHandlers(ResourceHandlerRegistry registry) {
     //    registry.addResourceHandler("/swagger-ui.html");
@@ -43,10 +54,25 @@ public class WebConfig implements WebMvcConfigurer {
   @Autowired
   private WXHandlerIntercepter wxHandlerIntercepter;
 
+  /**
+   * 拦截器配置
+   */
   @Override
   public void addInterceptors(InterceptorRegistry registry) {
     if (!debugProperties.isDebug()) {
       registry.addInterceptor(wxHandlerIntercepter);
     }
+  }
+
+  /**
+   * 格式转换器配置
+   */
+  @Override
+  public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+    Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder()
+            .indentOutput(true)
+            .dateFormat(new SimpleDateFormat("MM月dd日 hh:mm"))
+            .modulesToInstall(new ParameterNamesModule());
+    converters.add(new MappingJackson2HttpMessageConverter(builder.build()));
   }
 }

@@ -55,13 +55,13 @@ public class AppUser {
   @NotEmpty(message = "")
   @ApiModelProperty(value = "联系方式（具体的）")
   private String contactString;
-  @NotEmpty(message = "")
+//  @NotEmpty(message = "")
   @ApiModelProperty(value = "城市")
   private String city;
-  @NotEmpty(message = "")
+//  @NotEmpty(message = "")
   @ApiModelProperty(value = "省份")
   private String province;
-  @NotEmpty(message = "")
+//  @NotEmpty(message = "")
   @ApiModelProperty(value = "国家")
   private String country;
   @JsonIgnore

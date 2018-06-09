@@ -17,8 +17,6 @@
 package me.zbl.diulala.repository;
 
 import me.zbl.diulala.entity.persistence.AppUser;
-import me.zbl.diulala.entity.response.Object;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

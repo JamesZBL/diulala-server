@@ -52,4 +52,13 @@ public interface FindLoserRepository extends CrudRepository<AppFindLoser, Intege
    * @param identification 唯一标识
    */
   Collection<AppFindLoser> findAppFindLosersByCategoryAndIdentificationAndFinished(String category, String identification, Byte finished);
+
+  /**
+   * 根据用户统计归还物品的数量
+   *
+   * @param appUser 用户
+   *
+   * @return 数量
+   */
+  Integer countAppFindLosersByAppUserByCaughtUserAndFinished(AppUser appUser, Byte finished);
 }

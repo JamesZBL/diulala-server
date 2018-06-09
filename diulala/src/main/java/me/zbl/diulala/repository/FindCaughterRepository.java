@@ -58,4 +58,13 @@ public interface FindCaughterRepository extends CrudRepository<AppFindCaughter, 
    * @param appUser 用户
    */
   Collection<AppFindCaughter> findAppFindCaughtersByAppUserByLoseUser(AppUser appUser);
+
+  /**
+   * 根据用户统计找到物品的数量
+   *
+   * @param appUser 用户
+   *
+   * @return 数量
+   */
+  Integer countAppFindCaughtersByAppUserByLoseUserAndFinished(AppUser appUser, Byte finished);
 }

@@ -17,6 +17,8 @@
 package me.zbl.diulala.repository;
 
 import me.zbl.diulala.entity.persistence.AppUser;
+import me.zbl.diulala.entity.response.Object;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -29,3 +31,10 @@ public interface UserRepository extends CrudRepository<AppUser, String> {
 
   AppUser findAppUserByOpenId(String userid);
 }
+
+// SELECT
+//	lose.gotBackCount,
+//	caught.returnCount
+//FROM
+//	( SELECT count( * ) AS `gotBackCount` FROM app_find_caughter WHERE lose_user = 'obW4u5YJQVLrGXhm2G3QCSjUQLEM' ) AS lose,
+//	( SELECT count( * ) AS `returnCount` FROM app_find_loser WHERE caught_user = 'obW4u5YJQVLrGXhm2G3QCSjUQLEM' ) AS caught;

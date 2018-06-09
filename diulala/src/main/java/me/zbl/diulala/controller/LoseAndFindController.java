@@ -23,7 +23,9 @@ import io.swagger.annotations.ApiOperation;
 import me.zbl.auth.annotation.CurrentUser;
 import me.zbl.controller.base.BaseController;
 import me.zbl.diulala.entity.persistence.AppFindCaughter;
+import me.zbl.diulala.entity.response.LostAndFoundResponse;
 import me.zbl.diulala.service.FindCaughterService;
+import me.zbl.diulala.service.LostAndFoundService;
 import me.zbl.exception.FailOperationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,6 +49,9 @@ public class LoseAndFindController extends BaseController {
   @Autowired
   private FindCaughterService findCaughterService;
 
+  @Autowired
+  private LostAndFoundService lostAndFoundService;
+
   @ApiOperation(value = "捡到者通过唯一标识匹配由丢失者发布的信息")
   @ApiImplicitParams(value = {
           @ApiImplicitParam(name = "category", value = "物品分类", required = true),
@@ -65,6 +70,16 @@ public class LoseAndFindController extends BaseController {
   @GetMapping("/lose/mysubmits")
   public Collection<AppFindCaughter> mySubmits(String userid) {
     return wrapData(findCaughterService.findFindCaughterByUser(userid));
+  }
+
+  @ApiOperation(value = "查询本用户丢失捡到物品的数量统计")
+  @ApiImplicitParams(
+          @ApiImplicitParam(name = "userid", value = "用户 openId", required = true)
+  )
+  @CurrentUser
+  @GetMapping("/lost_and_found/my_submits_detail")
+  public LostAndFoundResponse myLostAndFound(String userid) {
+    return wrapData(lostAndFoundService.getLostAndFoundCount(userid));
   }
 
   @ApiOperation(value = "提交丢失物品的信息")

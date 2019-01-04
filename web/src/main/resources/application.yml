@@ -1,0 +1,15 @@
+spring:
+  profiles:
+#    active: prod,diulala
+    active: dev,diulala
+  mvc:
+    throw-exception-if-no-handler-found: true
+
+qiniu:
+  accessKey: your_access_key
+  secretKey: your_secret_key
+  domain: your_domain
+  timeout: 900
+
+token:
+  token-timeout: 1800

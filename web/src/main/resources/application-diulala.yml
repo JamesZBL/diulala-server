@@ -1,0 +1,8 @@
+wx:
+  appId: weixin_app_id
+  appSecret: weixin_app_secret
+  urlBase: https://api.weixin.qq.com
+  urlCode2Session: /sns/jscode2session
+
+swagger2:
+  title: API 文档 | 丢啦啦
